@@ -6,7 +6,7 @@ import { ExperienceItem } from "@/components/ui/experience-item"
 
 export function AboutSection() {
     return (
-        <div className="flex flex-1 flex-col h-full m-0 p-0 min-h-screen gap-10">
+        <div id="about-section" className="flex flex-1 flex-col h-full m-0 p-0 min-h-screen gap-10">
             {/* 
                 Section title
             */}
