@@ -1,4 +1,11 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + TailwindCSS + shadcn/ui + Animated UI Icons
+
+https://lucide-animated.com/?utm_source=ui.shadcn.com&utm_medium=referral&utm_campaign=directory&q=gith
+https://react.dev/learn/thinking-in-react
+https://tailwindcss.com/docs/styling-with-utility-classes
+https://ui.shadcn.com/docs/components
+
+Created a Figma Design for the portfolio docs/Portfolio.fig
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
