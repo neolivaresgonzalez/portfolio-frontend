@@ -6,7 +6,7 @@ import { GithubIcon } from "@/components/ui/github"
 
 export function HeroSection() {
     return (
-        <div id="hero-section" className="flex flex-1 flex-col align-center justify-center">
+        <div id="hero-section" className="flex flex-1 flex-col h-full m-0 p-0 min-h-screen gap-10">
 
             <div id="hero-section-content" className="flex flex-1 flex-row align-center justify-center flex-grow-1 gap-10">
 
