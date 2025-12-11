@@ -279,7 +279,7 @@ export function ContactForm() {
                                             aria-invalid={fieldState.invalid}
                                         />
                                         <FieldLabel htmlFor="form-opt-in">
-                                            Opt in to receive updates
+                                            Would you like to be contacted by me?
                                         </FieldLabel>
                                         <FieldError
                                             errors={[fieldState.error]}
