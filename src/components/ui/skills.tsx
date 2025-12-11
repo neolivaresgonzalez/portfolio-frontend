@@ -18,7 +18,7 @@ export function SkillsSection() {
             */}
             <div id="skills-section-title" className="flex flex-col items-center justify-center gap-2">
                 <p className="text-2xl text-center">Here are some of the skills I have</p>
-                <p className="text-5xl font-bold text-center">Skills</p>
+                <p className="text-5xl font-bold text-center">Skills & Experience</p>
             </div>
 
             {/* Carousel Container with Peek Effect */}
