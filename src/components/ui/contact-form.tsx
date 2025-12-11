@@ -15,13 +15,7 @@ import {
 import {
     Input
 } from "@/components/ui/input"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Button } from "@/components/ui/button"
 import { useForm, Controller } from "react-hook-form"
@@ -91,38 +85,6 @@ export function ContactForm() {
             </CardHeader>
             <CardContent>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <FieldGroup>
-                        <Controller
-                            name="salutation"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-salutation">
-                                        Salutation
-                                    </FieldLabel>
-                                    <Select
-                                        {...field}
-                                        defaultValue=""
-                                        aria-invalid={fieldState.invalid}
-                                    >
-                                        <SelectTrigger id="form-salutation">
-                                            <SelectValue placeholder="Select a salutation" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="Mr">Mr</SelectItem>
-                                            <SelectItem value="Mrs">Mrs</SelectItem>
-                                            <SelectItem value="Ms">Ms</SelectItem>
-                                            <SelectItem value="Dr">Dr</SelectItem>
-                                            <SelectItem value="Prof">Prof</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
-                                </Field>
-                            )}
-                        />
-                    </FieldGroup>
                     <FieldGroup className="grid grid-cols-2 gap-4">
                         <Controller
                             name="firstName"
@@ -136,7 +98,7 @@ export function ContactForm() {
                                         {...field}
                                         id="form-rhf-demo-title"
                                         aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
+                                        placeholder="Please insert your first name"
                                         autoComplete="off"
                                     />
                                     {fieldState.invalid && (
@@ -157,7 +119,7 @@ export function ContactForm() {
                                         {...field}
                                         id="form-last-name"
                                         aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
+                                        placeholder="Please insert your last name"
                                         autoComplete="off"
                                     />
                                     {fieldState.invalid && (
@@ -180,7 +142,7 @@ export function ContactForm() {
                                         {...field}
                                         id="form-email"
                                         aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
+                                        placeholder="Please insert your email"
                                         autoComplete="off"
                                     />
                                     {fieldState.invalid && (
@@ -201,7 +163,7 @@ export function ContactForm() {
                                         {...field}
                                         id="form-phone"
                                         aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
+                                        placeholder="Please insert your phone number"
                                         autoComplete="off"
                                     />
                                     {fieldState.invalid && (
@@ -211,28 +173,7 @@ export function ContactForm() {
                             )}
                         />
                     </FieldGroup>
-                    <FieldGroup>
-                        <Controller
-                            name="other"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-other">
-                                        Other
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-other"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="If you selected 'Other', please specify"
-                                        autoComplete="off"
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
-                                </Field>
-                            )}
-                        />
+                    {/* <FieldGroup>
                         <Controller
                             name="whoAreYou"
                             control={form.control}
@@ -245,11 +186,20 @@ export function ContactForm() {
                                         {...field}
                                         id="form-whoareyou"
                                         aria-invalid={fieldState.invalid}
+                                        className="flex flex-row w-full align-center justify-between"
                                     >
-                                        <RadioGroupItem value="0" id="form-rhf-demo-title-0">Recruiter</RadioGroupItem>
-                                        <RadioGroupItem value="1" id="form-rhf-demo-title-1">I need help with a project</RadioGroupItem>
-                                        <RadioGroupItem value="2" id="form-rhf-demo-title-2">Volunteer</RadioGroupItem>
-                                        <RadioGroupItem value="3" id="form-rhf-demo-title-3">Other</RadioGroupItem>
+                                        <div className="flex flex-row gap-2">
+                                            <RadioGroupItem value="0" id="form-whoareyou-0" />
+                                            <Label htmlFor="form-whoareyou-0">Recruiter</Label>
+                                        </div>
+                                        <div className="flex flex-row gap-2">
+                                            <RadioGroupItem value="1" id="form-whoareyou-1" />
+                                            <Label htmlFor="form-whoareyou-1">I need help with a project</Label>
+                                        </div>
+                                        <div className="flex flex-row gap-2">
+                                            <RadioGroupItem value="2" id="form-whoareyou-2" />
+                                            <Label htmlFor="form-whoareyou-2">Volunteer</Label>
+                                        </div>
                                     </RadioGroup>
 
                                     {fieldState.invalid && (
@@ -258,39 +208,19 @@ export function ContactForm() {
                                 </Field>
                             )}
                         />
-
-                        <Controller
-                            name="other"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-other">
-                                        Other
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-other"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="If you selected 'Other', please specify"
-                                        autoComplete="off"
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
-                                </Field>
-                            )}
-                        />
+                    </FieldGroup> */}
+                    <FieldGroup>
                         <Controller
                             name="notes"
                             control={form.control}
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-rhf-demo-title">
+                                    <FieldLabel htmlFor="form-notes">
                                         Notes
                                     </FieldLabel>
                                     <Input
                                         {...field}
-                                        id="form-rhf-demo-title"
+                                        id="form-notes"
                                         aria-invalid={fieldState.invalid}
                                         placeholder="Login button not working on mobile"
                                         autoComplete="off"
@@ -301,27 +231,29 @@ export function ContactForm() {
                                 </Field>
                             )}
                         />
+                    </FieldGroup>
+                    <FieldGroup>
                         {/* <Controller
-                            name="optIn"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-rhf-demo-title">
-                                        Opt In
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-rhf-demo-title"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
-                                        autoComplete="off"
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
-                                </Field>
-                            )}
-                        /> */}
+                                name="optIn"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid}>
+                                        <FieldLabel htmlFor="form-rhf-demo-title">
+                                            Opt In
+                                        </FieldLabel>
+                                        <Input
+                                            {...field}
+                                            id="form-rhf-demo-title"
+                                            aria-invalid={fieldState.invalid}
+                                            placeholder="Login button not working on mobile"
+                                            autoComplete="off"
+                                        />
+                                        {fieldState.invalid && (
+                                            <FieldError errors={[fieldState.error]} />
+                                        )}
+                                    </Field>
+                                )}
+                            /> */}
                     </FieldGroup>
                 </form>
             </CardContent>
