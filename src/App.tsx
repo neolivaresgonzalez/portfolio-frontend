@@ -1,10 +1,10 @@
 import './App.css'
 import { HeaderNavbar } from '@/components/ui/header-navbar'
-import { HeroSection } from '@/components/ui/hero'
-import { AboutSection } from '@/components/ui/about'
-import { SkillsSection } from '@/components/ui/skills'
-import { ContactSection } from '@/components/ui/contact'
-import { FeaturedProjectsSection } from '@/components/ui/featured-projects'
+import { HeroSection } from '@/components/ui/hero-section'
+import { AboutSection } from '@/components/ui/about-section'
+import { SkillsSection } from '@/components/ui/skills-section'
+import { ContactSection } from '@/components/ui/contact-section'
+import { FeaturedProjectsSection } from '@/components/ui/featured-projects-section'
 import { FooterNavbar } from '@/components/ui/footer-navbar'
 
 function Portfolio() {
