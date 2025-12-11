@@ -1,11 +1,11 @@
 import './App.css'
-import { HeaderNavbar } from '@/components/header-navbar/header-navbar'
-import { HeroSection } from '@/components/hero/hero'
-import { AboutSection } from '@/components/about/about'
-import { SkillsSection } from '@/components/skills/skills'
-import { ContactSection } from '@/components/contact/contact'
-import { ProjectsSection } from '@/components/projects/projects'
-import { FooterNavbar } from '@/components/footer-navbar/footer-navbar'
+import { HeaderNavbar } from '@/components/ui/header-navbar'
+import { HeroSection } from '@/components/ui/hero'
+import { AboutSection } from '@/components/ui/about'
+import { SkillsSection } from '@/components/ui/skills'
+import { ContactSection } from '@/components/ui/contact'
+import { FeaturedProjectsSection } from '@/components/ui/featured-projects'
+import { FooterNavbar } from '@/components/ui/footer-navbar'
 
 function Portfolio() {
   return (
@@ -14,7 +14,7 @@ function Portfolio() {
       <HeroSection />
       <AboutSection />
       <SkillsSection />
-      <ProjectsSection />
+      <FeaturedProjectsSection />
       <ContactSection />
       <FooterNavbar />
     </div>
@@ -22,7 +22,6 @@ function Portfolio() {
 }
 
 function App() {
-
   return (
     <Portfolio />
   )
