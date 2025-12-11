@@ -20,9 +20,9 @@ export function HeroSection() {
                         <p className="text-6xl font-bold text-center">Nicolás Olivares</p>
                         <p className="text-2xl font-bold text-center">Software Engineer</p>
                     </div>
-                    <div id="hero-section-main-info-buttons" className="flex flex-row items-center justify-center gap-2">
-                        <Button variant="secondary">Download Resume</Button>
-                        <Button variant="outline">Contact Me</Button>
+                    <div id="hero-section-main-info-buttons" className="flex flex-row items-center justify-center gap-4">
+                        <Button variant="default">Download Resume</Button>
+                        <Button variant="default">Contact Me</Button>
                     </div>
                     <div id="hero-section-main-info-socials" className="flex flex-row items-center justify-center gap-4">
                         <LinkedinIcon className="w-8 h-8" />
