@@ -8,19 +8,33 @@ import {
 } from "@/components/ui/card";
 import {
     Field,
+    FieldDescription,
     FieldError,
     FieldGroup,
     FieldLabel,
+    FieldSet,
+    FieldTitle,
 } from "@/components/ui/field"
 import {
     Input
 } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import {
+    Textarea
+} from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Button } from "@/components/ui/button"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod/v4"
+
+const NOTES_MAX_LENGTH = 500
+const NOTES_MIN_LENGTH = 20
+const FIRST_NAME_MAX_LENGTH = 100
+const FIRST_NAME_MIN_LENGTH = 2
+const LAST_NAME_MAX_LENGTH = 100
+const LAST_NAME_MIN_LENGTH = 2
+const LIST_OF_WHO_ARE_YOU = ["Recruiter", "Looking for a professional", "Volunteer"]
 
 const formSchema = z.object({
     salutation: z
@@ -28,26 +42,26 @@ const formSchema = z.object({
         .optional(),
     firstName: z
         .string()
-        .min(2, "First name must be at least 2 characters.")
-        .max(100, "First name must be at most 100 characters."),
+        .min(FIRST_NAME_MIN_LENGTH, "First name must be at least " + FIRST_NAME_MIN_LENGTH + " characters.")
+        .max(FIRST_NAME_MAX_LENGTH, "First name must be at most " + FIRST_NAME_MAX_LENGTH + " characters."),
     lastName: z
         .string()
-        .min(2, "Last name must be at least 2 characters.")
-        .max(100, "Last name must be at most 100 characters."),
+        .min(LAST_NAME_MIN_LENGTH, "Last name must be at least " + LAST_NAME_MIN_LENGTH + " characters.")
+        .max(LAST_NAME_MAX_LENGTH, "Last name must be at most " + LAST_NAME_MAX_LENGTH + " characters."),
     email: z
         .email("Invalid email address."),
     phone: z
         .string()
         .optional(),
     whoAreYou: z
-        .enum(["Recruiter", "I need help with a project", "Volunteer", "Other"]),
+        .enum(LIST_OF_WHO_ARE_YOU),
     other: z
         .string()
         .optional(),
     notes: z
         .string()
-        .min(20, "Notes must be at least 20 characters.")
-        .max(1000, "Notes must be at most 1000 characters."),
+        .min(NOTES_MIN_LENGTH, "Notes must be at least " + NOTES_MIN_LENGTH + " characters.")
+        .max(NOTES_MAX_LENGTH, "Notes must be at most " + NOTES_MAX_LENGTH + " characters."),
     optIn: z
         .boolean()
         .optional(),
@@ -63,36 +77,44 @@ export function ContactForm() {
             lastName: "",
             email: "",
             phone: "",
-            whoAreYou: "Other",
+            whoAreYou: LIST_OF_WHO_ARE_YOU[0],
             other: "",
             notes: "",
             optIn: false,
         },
     })
 
+    function onClear() {
+        form.reset()
+
+    }
+
     function onSubmit(data: z.infer<typeof formSchema>) {
+        if (!form.formState.isValid) {
+            console.error("Form is not valid")
+        }
         // Do something with the form values.
         console.log(data)
     }
 
     return (
         <Card className="w-1/2">
-            <CardHeader>
-                <CardTitle className="text-3xl text-left">Contact</CardTitle>
-                <CardDescription className="text-left">
-                    Do you need help with a project? Are you a recruiter looking for a skilled professional? Do you need a professional consultant?
-                </CardDescription>
-            </CardHeader>
-            <CardContent>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <FieldGroup className="grid grid-cols-2 gap-4">
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <CardHeader>
+                    <CardTitle className="text-3xl text-left">Contact</CardTitle>
+                    <CardDescription className="text-left">
+                        Do you need help with a project? Are you a recruiter looking for a skilled professional? Do you need a professional consultant?
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-6">
+                    <FieldGroup className="grid grid-cols-2 gap-4 pt-2">
                         <Controller
                             name="firstName"
                             control={form.control}
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel htmlFor="form-first-name">
-                                        First Name
+                                        First Name <p className="text-xs text-red-500">*</p>
                                     </FieldLabel>
                                     <Input
                                         {...field}
@@ -101,9 +123,10 @@ export function ContactForm() {
                                         placeholder="Please insert your first name"
                                         autoComplete="off"
                                     />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
+                                    <FieldError
+                                        errors={[fieldState.error]}
+                                        className="text-sm text-left text-red-500"
+                                    />
                                 </Field>
                             )}
                         />
@@ -113,7 +136,7 @@ export function ContactForm() {
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel htmlFor="form-last-name">
-                                        Last Name
+                                        Last Name <p className="text-xs text-red-500">*</p>
                                     </FieldLabel>
                                     <Input
                                         {...field}
@@ -122,21 +145,22 @@ export function ContactForm() {
                                         placeholder="Please insert your last name"
                                         autoComplete="off"
                                     />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
+                                    <FieldError
+                                        errors={[fieldState.error]}
+                                        className="text-sm text-left text-red-500"
+                                    />
                                 </Field>
                             )}
                         />
                     </FieldGroup>
-                    <FieldGroup className="grid grid-cols-2 gap-4">
+                    <FieldGroup className="grid grid-cols-2 gap-4 pt-2">
                         <Controller
                             name="email"
                             control={form.control}
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldLabel htmlFor="form-email">
-                                        Email
+                                        Email <p className="text-xs text-red-500">*</p>
                                     </FieldLabel>
                                     <Input
                                         {...field}
@@ -146,7 +170,10 @@ export function ContactForm() {
                                         autoComplete="off"
                                     />
                                     {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
+                                        <FieldError
+                                            errors={[fieldState.error]}
+                                            className="text-sm text-left text-red-500"
+                                        />
                                     )}
                                 </Field>
                             )}
@@ -166,100 +193,109 @@ export function ContactForm() {
                                         placeholder="Please insert your phone number"
                                         autoComplete="off"
                                     />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
+                                    <FieldError
+                                        errors={[fieldState.error]}
+                                        className="text-sm text-left text-red-500"
+                                    />
                                 </Field>
                             )}
                         />
                     </FieldGroup>
-                    {/* <FieldGroup>
+
+                    <FieldGroup>
                         <Controller
                             name="whoAreYou"
                             control={form.control}
                             render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-whoareyou">
+                                <RadioGroup
+                                    value={field.value}
+                                    onValueChange={field.onChange}
+                                >
+                                    <FieldTitle className="text-md">
                                         Who are you?
-                                    </FieldLabel>
-                                    <RadioGroup
-                                        {...field}
-                                        id="form-whoareyou"
-                                        aria-invalid={fieldState.invalid}
-                                        className="flex flex-row w-full align-center justify-between"
-                                    >
-                                        <div className="flex flex-row gap-2">
-                                            <RadioGroupItem value="0" id="form-whoareyou-0" />
-                                            <Label htmlFor="form-whoareyou-0">Recruiter</Label>
-                                        </div>
-                                        <div className="flex flex-row gap-2">
-                                            <RadioGroupItem value="1" id="form-whoareyou-1" />
-                                            <Label htmlFor="form-whoareyou-1">I need help with a project</Label>
-                                        </div>
-                                        <div className="flex flex-row gap-2">
-                                            <RadioGroupItem value="2" id="form-whoareyou-2" />
-                                            <Label htmlFor="form-whoareyou-2">Volunteer</Label>
-                                        </div>
-                                    </RadioGroup>
-
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
-                                </Field>
-                            )}
-                        />
-                    </FieldGroup> */}
-                    <FieldGroup>
-                        <Controller
-                            name="notes"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-notes">
-                                        Notes
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-notes"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="Login button not working on mobile"
-                                        autoComplete="off"
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError errors={[fieldState.error]} />
-                                    )}
-                                </Field>
+                                    </FieldTitle>
+                                    <FieldDescription className="text-sm text-gray-500 text-left">
+                                        Select the option that best describes your needs.
+                                    </FieldDescription>
+                                    <Field className="flex flex-row items-center justify-center gap-4">
+                                        {
+                                            LIST_OF_WHO_ARE_YOU.map((whoAreYou, index) => (
+                                                <div key={index} className="flex flex-row items-center justify-center gap-2">
+                                                    <RadioGroupItem value={whoAreYou} id={`form-whoareyou-${index}`} />
+                                                    <FieldLabel htmlFor={`form-whoareyou-${index}`} >{whoAreYou}</FieldLabel>
+                                                </div>
+                                            ))
+                                        }
+                                        <FieldError
+                                            errors={[fieldState.error]}
+                                            className="text-sm text-left text-red-500"
+                                        />
+                                    </Field>
+                                </RadioGroup>
                             )}
                         />
                     </FieldGroup>
-                    <FieldGroup>
-                        {/* <Controller
-                                name="optIn"
+                    <FieldSet>
+                        <FieldGroup>
+                            <Controller
+                                name="notes"
                                 control={form.control}
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel htmlFor="form-rhf-demo-title">
-                                            Opt In
+                                        <FieldLabel htmlFor="form-notes">
+                                            Notes <p className="text-xs text-red-500">*</p>
                                         </FieldLabel>
-                                        <Input
+                                        <Textarea
                                             {...field}
-                                            id="form-rhf-demo-title"
+                                            id="form-notes"
                                             aria-invalid={fieldState.invalid}
-                                            placeholder="Login button not working on mobile"
+                                            placeholder="Write your message here..."
                                             autoComplete="off"
                                         />
-                                        {fieldState.invalid && (
-                                            <FieldError errors={[fieldState.error]} />
-                                        )}
+                                        <FieldDescription className={`text-xs text-end ${field.value.length > NOTES_MAX_LENGTH ? 'text-red-500' : 'text-gray-500'}`}>
+                                            {field.value.length + "/" + NOTES_MAX_LENGTH}
+                                        </FieldDescription>
+                                        <FieldError
+                                            errors={[fieldState.error]}
+                                            className="text-sm text-left text-red-500"
+                                        />
                                     </Field>
                                 )}
-                            /> */}
-                    </FieldGroup>
-                </form>
-            </CardContent>
-            <CardFooter>
-                <Button type="submit" variant="default">Send</Button>
-            </CardFooter>
-        </Card>
+                            />
+                        </FieldGroup>
+                        <FieldGroup>
+                            <Controller
+                                name="optIn"
+                                control={form.control}
+                                render={({ field, fieldState }) => (
+                                    <Field data-invalid={fieldState.invalid} orientation="horizontal">
+                                        <Checkbox
+                                            id="form-opt-in"
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                            onBlur={field.onBlur}
+                                            name={field.name}
+                                            ref={field.ref}
+                                            aria-invalid={fieldState.invalid}
+                                        />
+                                        <FieldLabel htmlFor="form-opt-in">
+                                            Opt in to receive updates
+                                        </FieldLabel>
+                                        <FieldError
+                                            errors={[fieldState.error]}
+                                            className="text-sm text-left text-red-500"
+                                        />
+                                    </Field>
+                                )}
+                            />
+                        </FieldGroup>
+                    </FieldSet>
+                </CardContent>
+                <CardFooter className="flex align-start pt-4 gap-4">
+                    <Button type="submit">Send</Button>
+                    <Button variant="outline" onClick={onClear}>Clear</Button>
+                </CardFooter>
+            </form>
+        </Card >
     )
 }
