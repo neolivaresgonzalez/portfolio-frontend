@@ -10,8 +10,8 @@ export function AboutSection() {
             {/* 
                 Section title
             */}
-            <div id="about-section-title" className="flex flex-1 flex-col">
-                <div className="flex flex-1 flex-col align-center justify-center">
+            <div id="about-section-title" className="flex flex-col">
+                <div className="flex flex-col align-center justify-center">
                     <p className="flex text-2xl align-center justify-center">Get to know more</p>
                     <p className="flex text-5xl font-bold align-center justify-center">About me</p>
                 </div>
@@ -19,10 +19,10 @@ export function AboutSection() {
             {/* 
                 Section content
             */}
-            <div id="about-section-content" className="flex flex-1 flex-col gap-10">
+            <div id="about-section-content" className="flex flex-col gap-10">
                 {/* Section content experience & education */}
-                <div id="about-section-content-experience-education" className="flex flex-1 flex-col align-center justify-center">
-                    <div className="flex flex-1 flex-row align-center justify-center gap-5 flex-wrap">
+                <div id="about-section-content-experience-education" className="flex flex-col align-center justify-center">
+                    <div className="flex flex-row align-center justify-center gap-5 flex-wrap">
                         <EducationItem />
                         <ExperienceItem />
                         <ExperienceItem />
@@ -32,7 +32,7 @@ export function AboutSection() {
                 {/* 
                     Section content Professional Summary
                 */}
-                <div id="about-section-content-professional-summary" className="flex flex-1 flex-col align-center justify-center">
+                <div id="about-section-content-professional-summary" className="flex flex-col align-center justify-center">
                     <p className="text-lg align-center justify-center">
                         Hi, I'm Nicolás Olivares, a software engineer with a passion for creating innovative and user-friendly applications. With a strong foundation in programming and a commitment to continuous learning, I strive to deliver high-quality solutions that meet the needs of both users and businesses.
                         Hi, I'm Nicolás Olivares, a software engineer with a passion for creating innovative and user-friendly applications. With a strong foundation in programming and a commitment to continuous learning, I strive to deliver high-quality solutions that meet the needs of both users and businesses.

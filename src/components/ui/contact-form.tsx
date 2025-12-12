@@ -98,7 +98,7 @@ export function ContactForm() {
     }
 
     return (
-        <Card className="w-1/2">
+        <Card className="w-full max-w-2xl mx-auto">
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <CardHeader>
                     <CardTitle className="text-3xl text-left">Contact</CardTitle>
