@@ -1,5 +1,5 @@
 import { ContactChannels } from "@/components/ui/contact-channels-card"
-import { ContactForm } from "@/components/ui/contact-form"
+import { ContactForm } from "@/components/ui/forms/contact-form-2"
 import { SectionTitle } from "../section-title"
 
 export function ContactSection() {
