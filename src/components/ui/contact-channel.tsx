@@ -3,8 +3,8 @@ import {
     ItemContent
 } from "@/components/ui/item";
 import { Mail, Phone } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/linkedin";
-import { GithubIcon } from "@/components/ui/github";
+import { LinkedinIcon } from "@/components/ui/icons/linkedin";
+import { GithubIcon } from "@/components/ui/icons/github";
 
 interface ContactChannelProps {
     type: "email" | "phone" | "linkedin" | "github";

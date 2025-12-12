@@ -1,8 +1,8 @@
 import profilePicture from "@/assets/profile.jpeg"
 import { Button } from "@/components/ui/button"
-import { ArrowDownIcon } from "@/components/ui/arrow-down"
-import { LinkedinIcon } from "@/components/ui/linkedin"
-import { GithubIcon } from "@/components/ui/github"
+import { ArrowDownIcon } from "@/components/ui/icons/arrow-down"
+import { LinkedinIcon } from "@/components/ui/icons/linkedin"
+import { GithubIcon } from "@/components/ui/icons/github"
 
 export function HeroSection() {
     return (
@@ -14,7 +14,7 @@ export function HeroSection() {
                 <div id="hero-section-main-info" className="flex flex-col items-center justify-center gap-6">
                     <div id="hero-section-main-info-text" className="flex flex-col items-center justify-center gap-2">
                         <p className="text-xl text-center">Hello I'm</p>
-                        <p className="text-6xl font-bold text-center">Nicolás Olivares</p>
+                        <p className="text-5xl font-bold text-center">Nicolás Olivares</p>
                         <p className="text-2xl font-bold text-center">Software Engineer</p>
                     </div>
                     <div id="hero-section-main-info-buttons" className="flex flex-row items-center justify-center gap-4">

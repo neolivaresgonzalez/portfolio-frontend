@@ -1,5 +1,5 @@
 import { SkillsGroup } from "@/components/ui/skills-group";
-import { ArrowDownIcon } from "@/components/ui/arrow-down";
+import { ArrowDownIcon } from "@/components/ui/icons/arrow-down";
 
 export function SkillsSection() {
     const skillsGroups = [

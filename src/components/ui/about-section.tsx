@@ -1,5 +1,5 @@
 
-import { ArrowDownIcon } from "@/components/ui/arrow-down"
+import { ArrowDownIcon } from "@/components/ui/icons/arrow-down"
 import { EducationItem } from "@/components/ui/education-item"
 import { ExperienceItem } from "@/components/ui/experience-item"
 

@@ -1,4 +1,12 @@
-import { Home, User, Code, Mail, Star } from "lucide-react"
+import { HomeIcon } from "@/components/ui/icons/home"
+import { UserIcon } from "@/components/ui/icons/user"
+import { FolderCodeIcon } from "@/components/ui/icons/folder-code"
+import { SparklesIcon } from "@/components/ui/icons/sparkles"
+import { AtSignIcon } from "@/components/ui/icons/at-sign"
+import { SearchIcon } from "@/components/ui/icons/search"
+import { CoffeeIcon } from "@/components/ui/icons/coffee"
+import { RocketIcon } from "@/components/ui/icons/rocket"
+import { HeartIcon } from "@/components/ui/icons/heart"
 
 import {
     Sidebar,
@@ -16,27 +24,27 @@ const homeItems = [
     {
         title: "Home",
         url: "#hero",
-        icon: Home,
+        icon: HomeIcon,
     },
     {
         title: "About",
         url: "#about",
-        icon: User,
+        icon: UserIcon,
     },
     {
         title: "Skills",
         url: "#skills",
-        icon: Code,
+        icon: FolderCodeIcon,
     },
     {
         title: "Featured Projects",
         url: "#featured-projects",
-        icon: Star,
+        icon: SparklesIcon,
     },
     {
         title: "Contact",
         url: "#contact",
-        icon: Mail,
+        icon: AtSignIcon,
     },
 ]
 
@@ -44,30 +52,36 @@ const homeItems = [
 // TODO: Add portfolio routes to project search component with filtered results
 const portfolioItems = [
     {
+        title: "Search Projects",
+        url: "#search-projects",
+        icon: SearchIcon,
+    },
+    {
         title: "Featured Projects",
         url: "#featured-projects",
-        icon: Star,
+        icon: SparklesIcon,
     },
     {
         title: "Professionals",
         url: "#professionals",
-        icon: User,
+        icon: CoffeeIcon,
     },
     {
-        title: "Personal",
+        title: "Personal & Hobbies",
         url: "#personal",
-        icon: Code,
+        icon: RocketIcon,
     },
     {
-        title: "Hobbies",
-        url: "#hobbies",
-        icon: Star,
+        title: "Volunteer",
+        url: "#volunteer",
+        icon: HeartIcon,
     }
 ]
 
 export function AppSidebar() {
     return (
-        <Sidebar>
+        <Sidebar className="border-none">
+            {/* <SidebarContent className="bg-linear-to-r from-orange-200 via-orange-100 to-background"> */}
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Home</SidebarGroupLabel>
