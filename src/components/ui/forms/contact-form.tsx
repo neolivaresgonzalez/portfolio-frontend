@@ -1,32 +1,23 @@
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-    CardDescription,
-} from "@/components/ui/card";
-import {
-    Field,
-    FieldDescription,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-    FieldSet,
-    FieldTitle,
-} from "@/components/ui/field"
-import {
-    Input
-} from "@/components/ui/input"
-import {
-    Textarea
-} from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Button } from "@/components/ui/button"
-import { useForm, Controller } from "react-hook-form"
+"use client"
+
 import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod/v4"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+
+import { Button } from "@/components/ui/button"
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 const NOTES_MAX_LENGTH = 500
 const NOTES_MIN_LENGTH = 20
@@ -34,7 +25,7 @@ const FIRST_NAME_MAX_LENGTH = 100
 const FIRST_NAME_MIN_LENGTH = 2
 const LAST_NAME_MAX_LENGTH = 100
 const LAST_NAME_MIN_LENGTH = 2
-const LIST_OF_WHO_ARE_YOU = ["Recruiter", "Looking for a professional", "Volunteer"]
+const LIST_OF_WHO_ARE_YOU = ["Recruiter", "Hiring Manager", "Volunteer Opportunity", "Let's collaborate"]
 
 const formSchema = z.object({
     salutation: z
@@ -67,7 +58,6 @@ const formSchema = z.object({
         .optional(),
 })
 
-
 export function ContactForm() {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -97,205 +87,140 @@ export function ContactForm() {
         console.log(data)
     }
 
-    return (
-        <Card className="w-full max-w-2xl mx-auto">
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-                <CardHeader>
-                    <CardTitle className="text-3xl text-left">Contact</CardTitle>
-                    <CardDescription className="text-left">
-                        Do you need help with a project? Are you a recruiter looking for a skilled professional? Do you need a professional consultant?
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="flex flex-col gap-6">
-                    <FieldGroup className="grid grid-cols-2 gap-4 pt-2">
-                        <Controller
-                            name="firstName"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-first-name">
-                                        First Name <p className="text-xs text-red-500">*</p>
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-rhf-demo-title"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="Please insert your first name"
-                                        autoComplete="off"
-                                    />
-                                    <FieldError
-                                        errors={[fieldState.error]}
-                                        className="text-sm text-left text-red-500"
-                                    />
-                                </Field>
-                            )}
-                        />
-                        <Controller
-                            name="lastName"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-last-name">
-                                        Last Name <p className="text-xs text-red-500">*</p>
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-last-name"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="Please insert your last name"
-                                        autoComplete="off"
-                                    />
-                                    <FieldError
-                                        errors={[fieldState.error]}
-                                        className="text-sm text-left text-red-500"
-                                    />
-                                </Field>
-                            )}
-                        />
-                    </FieldGroup>
-                    <FieldGroup className="grid grid-cols-2 gap-4 pt-2">
-                        <Controller
-                            name="email"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-email">
-                                        Email <p className="text-xs text-red-500">*</p>
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-email"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="Please insert your email"
-                                        autoComplete="off"
-                                    />
-                                    {fieldState.invalid && (
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                            className="text-sm text-left text-red-500"
-                                        />
-                                    )}
-                                </Field>
-                            )}
-                        />
-                        <Controller
-                            name="phone"
-                            control={form.control}
-                            render={({ field, fieldState }) => (
-                                <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor="form-phone">
-                                        Phone
-                                    </FieldLabel>
-                                    <Input
-                                        {...field}
-                                        id="form-phone"
-                                        aria-invalid={fieldState.invalid}
-                                        placeholder="Please insert your phone number"
-                                        autoComplete="off"
-                                    />
-                                    <FieldError
-                                        errors={[fieldState.error]}
-                                        className="text-sm text-left text-red-500"
-                                    />
-                                </Field>
-                            )}
-                        />
-                    </FieldGroup>
 
-                    <FieldGroup>
-                        <Controller
-                            name="whoAreYou"
+    return (
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+                <Card className="w-3/4 mx-auto">
+                    <CardHeader>
+                        <CardTitle className="text-3xl text-left">Contact Form</CardTitle>
+                        <CardDescription className="text-justify">
+                            Do you need help with a project? Are you a recruiter looking for a skilled professional? Do you need a professional consultant?
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex flex-col md:flex-row gap-8 flex-wrap">
+                        <FormField
                             control={form.control}
-                            render={({ field, fieldState }) => (
-                                <RadioGroup
-                                    value={field.value}
-                                    onValueChange={field.onChange}
-                                >
-                                    <FieldTitle className="text-md">
-                                        Who are you?
-                                    </FieldTitle>
-                                    <FieldDescription className="text-sm text-gray-500 text-left">
-                                        Select the option that best describes your needs.
-                                    </FieldDescription>
-                                    <Field className="flex flex-row items-center justify-center gap-4">
-                                        {
-                                            LIST_OF_WHO_ARE_YOU.map((whoAreYou, index) => (
-                                                <div key={index} className="flex flex-row items-center justify-center gap-2">
-                                                    <RadioGroupItem value={whoAreYou} id={`form-whoareyou-${index}`} />
-                                                    <FieldLabel htmlFor={`form-whoareyou-${index}`} >{whoAreYou}</FieldLabel>
-                                                </div>
-                                            ))
-                                        }
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                            className="text-sm text-left text-red-500"
-                                        />
-                                    </Field>
-                                </RadioGroup>
+                            name="firstName"
+                            render={({ field }) => (
+                                <FormItem className="mb-2">
+                                    <FormLabel>First Name <span className="text-red-500">*</span></FormLabel>
+                                    <FormDescription className="text-left">
+                                        Please insert your first name.
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Input {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
                             )}
                         />
-                    </FieldGroup>
-                    <FieldSet>
-                        <FieldGroup>
-                            <Controller
-                                name="notes"
-                                control={form.control}
-                                render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel htmlFor="form-notes">
-                                            Notes <p className="text-xs text-red-500">*</p>
-                                        </FieldLabel>
-                                        <Textarea
-                                            {...field}
-                                            id="form-notes"
-                                            aria-invalid={fieldState.invalid}
-                                            placeholder="Write your message here..."
-                                            autoComplete="off"
-                                        />
-                                        <FieldDescription className={`text-xs text-end ${field.value.length > NOTES_MAX_LENGTH ? 'text-red-500' : 'text-gray-500'}`}>
-                                            {field.value.length + "/" + NOTES_MAX_LENGTH}
-                                        </FieldDescription>
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                            className="text-sm text-left text-red-500"
-                                        />
-                                    </Field>
-                                )}
-                            />
-                        </FieldGroup>
-                        <FieldGroup>
-                            <Controller
-                                name="optIn"
-                                control={form.control}
-                                render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.invalid} orientation="horizontal">
-                                        <Checkbox
-                                            id="form-opt-in"
-                                            checked={field.value}
-                                            onCheckedChange={field.onChange}
-                                            onBlur={field.onBlur}
-                                            name={field.name}
-                                            ref={field.ref}
-                                            aria-invalid={fieldState.invalid}
-                                        />
-                                        <FieldLabel htmlFor="form-opt-in">
-                                            Would you like to be contacted by me?
-                                        </FieldLabel>
-                                        <FieldError
-                                            errors={[fieldState.error]}
-                                            className="text-sm text-left text-red-500"
-                                        />
-                                    </Field>
-                                )}
-                            />
-                        </FieldGroup>
-                    </FieldSet>
-                </CardContent>
-                <CardFooter className="flex align-start pt-4 gap-4">
-                    <Button type="submit">Send</Button>
-                    <Button variant="outline" onClick={onClear}>Clear</Button>
-                </CardFooter>
+                        <FormField
+                            control={form.control}
+                            name="lastName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Last Name <span className="text-red-500">*</span></FormLabel>
+                                    <FormDescription className="text-left">
+                                        Please insert your last name.
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Input {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email <span className="text-red-500">*</span></FormLabel>
+                                    <FormDescription className="text-left">
+                                        Please insert your email.
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Input {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Phone</FormLabel>
+                                    <FormDescription className="text-left">
+                                        Please insert your phone.
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Input {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="whoAreYou"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Who are you? <span className="text-red-500">*</span></FormLabel>
+                                    <FormDescription className="text-left">
+                                        This will help me to understand who you are.
+                                    </FormDescription>
+                                    <FormControl>
+                                        {/* <Input placeholder="Please insert your who are you" {...field} /> */}
+                                        <Select onValueChange={field.onChange} defaultValue={LIST_OF_WHO_ARE_YOU[3]}>
+                                            <SelectTrigger>
+                                                <SelectValue >
+                                                    {field.value}
+                                                </SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {
+                                                    LIST_OF_WHO_ARE_YOU.map((whoAreYou, index) => (
+                                                        <div key={index}>
+                                                            <SelectItem value={whoAreYou}>{whoAreYou}</SelectItem>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </SelectContent>
+                                        </Select>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="notes"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Notes <span className="text-red-500">*</span>
+                                    </FormLabel>
+                                    <FormDescription className="text-left">
+                                        This will help me to understand your needs.
+                                    </FormDescription>
+                                    <FormControl>
+                                        <Textarea placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </CardContent>
+                    <CardFooter className="flex justify-between">
+                        <Button type="submit">Submit</Button>
+                        <Button variant="outline" onClick={onClear}>Reset</Button>
+                    </CardFooter>
+                </Card>
             </form>
-        </Card >
+        </Form>
+
     )
 }
