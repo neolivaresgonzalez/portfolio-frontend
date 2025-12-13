@@ -1,8 +1,35 @@
 import profilePicture from "@/assets/profile.jpeg"
 import { Button } from "@/components/ui/button"
-import { LinkedinIcon } from "@/components/ui/icons/linkedin"
-import { GithubIcon } from "@/components/ui/icons/github"
+import type { ContactChannelProps } from "@/types/contact-channel-card"
+import { ContactChannel } from "@/components/ui/contact-channel"
 import { DownloadResumeModule } from "@/components/ui/modules/download-resume-module"
+
+const CONTACT_CHANNELS: ContactChannelProps[] = [
+    {
+        kind: "linkedin",
+        value: "linkedin.com/in/ne-olivaresgonzalez",
+        url: "https://linkedin.com/in/ne-olivaresgonzalez",
+        text: false
+    },
+    {
+        kind: "github",
+        value: "github.com/neolivaresgonzalez",
+        url: "https://github.com/neolivaresgonzalez",
+        text: false
+    },
+    {
+        kind: "email",
+        value: "nicolasolivares@gmail.com",
+        url: "mailto:nicolasolivares@gmail.com",
+        text: false,
+    },
+    {
+        kind: "phone",
+        value: "+1 (123) 456-7890",
+        url: "tel:+11234567890",
+        text: false,
+    },
+]
 
 export function Hero() {
 
@@ -22,8 +49,17 @@ export function Hero() {
                     <Button variant="default">Contact Me</Button>
                 </div>
                 <div id="hero-section-main-info-socials" className="flex flex-row items-center justify-center gap-4">
-                    <LinkedinIcon className="w-8 h-8" />
-                    <GithubIcon className="w-8 h-8" />
+                    {
+                        CONTACT_CHANNELS.map((channel, index) => (
+                            <ContactChannel
+                                key={index}
+                                kind={channel.kind}
+                                value={channel.value}
+                                url={channel.url}
+                                text={channel.text}
+                            />
+                        ))
+                    }
                 </div>
             </div>
         </div>
