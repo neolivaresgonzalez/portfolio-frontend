@@ -46,7 +46,7 @@ export function Hero() {
                 </div>
                 <div id="hero-section-main-info-buttons" className="flex flex-row items-center justify-center gap-4">
                     <DownloadResumeModule side="left" />
-                    <Button variant="default">Contact Me</Button>
+                    <Button variant="default" onClick={() => window.scrollTo({ top: document.getElementById("contact")?.offsetTop || 0, behavior: "smooth" })} className="">Contact Me</Button>
                 </div>
                 <div id="hero-section-main-info-socials" className="flex flex-row items-center justify-center gap-4">
                     {
