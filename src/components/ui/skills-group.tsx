@@ -13,7 +13,7 @@ interface SkillsGroupProps {
 
 export function SkillsGroup(props: SkillsGroupProps) {
     return (
-        <Card className="snap-center w-full max-w-4xl max-h- shrink-0">
+        <Card id="skills-group" className="snap-center w-full max-w-4xl max-h- shrink-0">
             <CardHeader>
                 <CardTitle>{props.title}</CardTitle>
             </CardHeader>

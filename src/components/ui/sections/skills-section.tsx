@@ -19,7 +19,6 @@ export function SkillsSection() {
                 <SectionTitle title="Skills & Experience" subtitle="Here are some of the skills I have" />
             </div>
 
-            {/* Carousel Container with Peek Effect */}
             <div id="skills-section-content-container" className="flex flex-1 flex-col gap-10">
                 <Carousel>
                     {skillsGroups.map((group, index) => (
