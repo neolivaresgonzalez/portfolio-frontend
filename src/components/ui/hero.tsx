@@ -2,8 +2,10 @@ import profilePicture from "@/assets/profile.jpeg"
 import { Button } from "@/components/ui/button"
 import { LinkedinIcon } from "@/components/ui/icons/linkedin"
 import { GithubIcon } from "@/components/ui/icons/github"
+import { DownloadResumeModule } from "@/components/ui/modules/download-resume-module"
 
 export function Hero() {
+
     return (
         <div className="flex flex-row flex-wrap">
             <div id="hero-section-content-profile-picture" className="flex items-center justify-center">
@@ -16,7 +18,7 @@ export function Hero() {
                     <p className="text-2xl font-bold text-center">Software Engineer</p>
                 </div>
                 <div id="hero-section-main-info-buttons" className="flex flex-row items-center justify-center gap-4">
-                    <Button variant="default">Download Resume</Button>
+                    <DownloadResumeModule side="left" />
                     <Button variant="default">Contact Me</Button>
                 </div>
                 <div id="hero-section-main-info-socials" className="flex flex-row items-center justify-center gap-4">
