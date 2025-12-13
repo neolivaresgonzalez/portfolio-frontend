@@ -91,14 +91,14 @@ export function ContactForm() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
-                <Card className="w-3/4 mx-auto">
+                <Card className="w-full mx-auto align-center justify-center">
                     <CardHeader>
                         <CardTitle className="text-3xl text-left">Contact Form</CardTitle>
                         <CardDescription className="text-justify">
                             Do you need help with a project? Are you a recruiter looking for a skilled professional? Do you need a professional consultant?
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="flex flex-col md:flex-row gap-8 flex-wrap">
+                    <CardContent className="flex flex-col gap-4">
                         <FormField
                             control={form.control}
                             name="firstName"
@@ -163,6 +163,7 @@ export function ContactForm() {
                                 </FormItem>
                             )}
                         />
+
                         <FormField
                             control={form.control}
                             name="whoAreYou"
@@ -195,24 +196,26 @@ export function ContactForm() {
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            control={form.control}
-                            name="notes"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>
-                                        Notes <span className="text-red-500">*</span>
-                                    </FormLabel>
-                                    <FormDescription className="text-left">
-                                        This will help me to understand your needs.
-                                    </FormDescription>
-                                    <FormControl>
-                                        <Textarea placeholder="" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
+                        <div className="flex flex-row md:flex-col gap-8 flex-wrap">
+                            <FormField
+                                control={form.control}
+                                name="notes"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>
+                                            Notes <span className="text-red-500">*</span>
+                                        </FormLabel>
+                                        <FormDescription className="text-left">
+                                            This will help me to understand your needs.
+                                        </FormDescription>
+                                        <FormControl>
+                                            <Textarea placeholder="" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
                     </CardContent>
                     <CardFooter className="flex justify-between">
                         <Button type="submit">Submit</Button>

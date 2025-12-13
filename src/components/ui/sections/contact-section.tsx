@@ -37,10 +37,10 @@ export function ContactSection() {
                 <SectionTitle title="Contact me" subtitle="Get in touch" />
             </div>
             <div id="contact-section-content" className="flex flex-col justify-center w-full m-4 p-4 gap-4">
-                <div id="contact-section-content-contact-channels" className="flex h-full flex-row align-center justify-center">
+                <div id="contact-section-content-contact-channels" className="flex flex-col justify-center w-full m-4 p-4 gap-4">
                     <ContactChannels channels={CONTACT_CHANNELS} />
                 </div>
-                <div id="contact-section-content-contact-form" className="flex h-full flex-row align-center justify-center">
+                <div id="contact-section-content-contact-form" className="flex flex-col justify-center w-full m-4 p-4 gap-4">
                     <ContactForm />
                 </div>
             </div>
