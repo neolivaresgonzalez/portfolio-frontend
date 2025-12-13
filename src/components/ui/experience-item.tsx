@@ -5,31 +5,40 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-import { AwardIcon } from "lucide-react"
+import { GraduationCapIcon, BriefcaseIcon } from "lucide-react"
 
-export function ExperienceItem() {
+import type { ExperienceItemProps } from "@/types/experience-item"
+
+export function ExperienceItem(props: ExperienceItemProps) {
     return (
-        <Card>
+        <Card className="snap-center max-w-4xl overflow-x-hidden shrink-0">
             <CardContent>
                 <CardTitle>
-                    <div className="flex flex-1 flex-col align-center justify-center gap-2">
-                        <div className="flex flex-1 flex-row align-center justify-center">
-                            <AwardIcon size="40" className="flex flex-1" />
-                        </div>
-                        <p className="text-md font-bold">Experience</p>
+                    <div className="flex flex-row align-center justify-center">
+                        {props.kind === "Employment" ? <BriefcaseIcon size="40" className="flex flex-1" /> : null}
+                        {props.kind === "Education" ? <GraduationCapIcon size="40" className="flex flex-1" /> : null}
+                    </div>
+                    <div className="flex flex-row align-center justify-center">
+                        <p className="text-lg font-bold">
+                            {props.kind}
+                        </p>
                     </div>
                 </CardTitle>
                 <CardDescription>
-                    <div className="flex flex-1 flex-row align-center justify-center">
-                        <div className="flex flex-1 flex-col align-center justify-center">
-                            <p className="text-sm">Software Engineer</p>
-                            <p className="text-sm">Company</p>
-                            <p className="text-sm">01/2020 - 06/2022</p>
+                    <div className="flex flex-col align-center justify-center">
+                        <div className="flex flex-1 flex-col align-center justify-center text-justify">
+                            <p className="text-md">{props.subtitle}</p>
+                            <p className="text-sm">{props.at}</p>
+                            {props.location && <p className="text-sm">{props.location}</p>}
+                            {props.startDate && <p className="text-sm">{props.startDate} - {props.endDate}</p>}
+                            {props.website && <p className="text-sm"><a href={props.website} target="_blank" rel="noopener noreferrer">{props.website}</a></p>}
+                            {props.gpa && <p className="text-sm">GPA: {props.gpa}</p>}
+                            {props.description && <p className="text-sm">{props.description}</p>}
+                            {props.achievements && <p className="text-sm">{props.achievements}</p>}
                         </div>
-
                     </div>
                 </CardDescription>
             </CardContent>
-        </Card>
+        </Card >
     )
 }
