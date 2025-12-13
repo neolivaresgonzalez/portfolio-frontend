@@ -5,31 +5,40 @@ import {
 import { Mail, Phone } from "lucide-react";
 import { LinkedinIcon } from "@/components/ui/icons/linkedin";
 import { GithubIcon } from "@/components/ui/icons/github";
-
-interface ContactChannelProps {
-    type: "email" | "phone" | "linkedin" | "github";
-    value: string;
-}
+import type { ContactChannelProps } from "@/types/contact-channel-card";
 
 export function ContactChannel(props: ContactChannelProps) {
     return (
-        <Item>
-            <ItemContent className="flex flex-row gap-2 justify-center">
-                <div className="flex">
-                    {
-                        props.type === "email" ? (
-                            <Mail />
-                        ) : props.type === "phone" ? (
-                            <Phone />
-                        ) : props.type === "linkedin" ? (
-                            <LinkedinIcon />
-                        ) : props.type === "github" ? (
-                            <GithubIcon />
-                        ) : null
-                    }
-                </div>
-                <p className="text-lg">{props.value}</p>
-            </ItemContent>
-        </Item>
+        <a
+            href={props.url}
+            className="cursor-pointer"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Item>
+                <ItemContent className="flex flex-row gap-2 justify-center">
+                    <div className="flex">
+                        {
+                            props.kind === "email" ? (
+                                <Mail />
+                            ) : props.kind === "phone" ? (
+                                <Phone />
+                            ) : props.kind === "linkedin" ? (
+                                <LinkedinIcon />
+                            ) : props.kind === "github" ? (
+                                <GithubIcon />
+                            ) : null
+                        }
+                    </div>
+                    <div>
+                        {
+                            props.text ? (
+                                <p className="text-lg">{props.value}</p>
+                            ) : null
+                        }
+                    </div>
+                </ItemContent>
+            </Item>
+        </a>
     )
 }

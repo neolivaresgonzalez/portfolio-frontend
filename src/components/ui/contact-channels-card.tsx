@@ -3,15 +3,25 @@ import {
     CardContent
 } from "@/components/ui/card";
 import { ContactChannel } from "./contact-channel";
+import type { ContactChannelsProps } from "@/types/contact-channel-card";
 
-export function ContactChannels() {
+
+
+export function ContactChannels(props: ContactChannelsProps) {
     return (
         <Card className="w-full pl-10 pr-10">
             <CardContent className="flex flex-row flex-wrap gap-5 justify-center">
-                <ContactChannel type="email" value="email@email.com" />
-                <ContactChannel type="phone" value="(123) 456-7890" />
-                <ContactChannel type="linkedin" value="linkedin.com/in/username" />
-                <ContactChannel type="github" value="github.com/username" />
+                {
+                    props.channels.map((channel, index) => (
+                        <ContactChannel
+                            key={index}
+                            kind={channel.kind}
+                            value={channel.value}
+                            url={channel.url}
+                            text={channel.text}
+                        />
+                    ))
+                }
             </CardContent>
         </Card>
     )
