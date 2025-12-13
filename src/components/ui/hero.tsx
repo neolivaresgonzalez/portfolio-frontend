@@ -7,7 +7,7 @@ export function Hero() {
     return (
         <div className="flex flex-row flex-wrap">
             <div id="hero-section-content-profile-picture" className="flex items-center justify-center">
-                <img src={profilePicture} className="w-full max-w-xs h-auto aspect-square object-cover rounded-full" alt="Profile Picture" />
+                <img src={profilePicture} className="w-full max-w-xs h-auto aspect-square object-cover rounded-full m-4" alt="Profile Picture" />
             </div>
             <div id="hero-section-main-info" className="flex flex-col items-center justify-center gap-5">
                 <div id="hero-section-main-info-text" className="flex flex-col items-center justify-center gap-2">
