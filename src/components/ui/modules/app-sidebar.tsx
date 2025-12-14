@@ -17,7 +17,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/shadcn-ui/sidebar"
 
 type MenuItem = {
     title: string;

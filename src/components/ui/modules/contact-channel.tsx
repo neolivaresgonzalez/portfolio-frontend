@@ -1,7 +1,7 @@
 import {
     Item,
     ItemContent
-} from "@/components/ui/item";
+} from "@/components/ui/shadcn-ui/item";
 import { Mail, Phone } from "lucide-react";
 import { LinkedinIcon } from "@/components/ui/icons/linkedin";
 import { GithubIcon } from "@/components/ui/icons/github";

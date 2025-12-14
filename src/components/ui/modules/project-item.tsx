@@ -4,8 +4,8 @@ import {
     CardHeader,
     CardTitle,
     CardAction
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "@/components/ui/shadcn-ui/card";
+import { Button } from "@/components/ui/shadcn-ui/button";
 import projectThumbnail from "@/assets/profile.jpeg";
 
 interface ProjectItemProps {

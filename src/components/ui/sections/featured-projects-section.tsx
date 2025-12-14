@@ -1,7 +1,7 @@
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
-import { ProjectItem } from "@/components/ui/project-item"
-import { SectionTitle } from "@/components/ui/section-title";
-import { Carousel } from "@/components/ui/carousel";
+import { ProjectItem } from "@/components/ui/modules/project-item"
+import { SectionTitle } from "@/components/ui/modules/section-title";
+import { Carousel } from "@/components/ui/modules/carousel";
 
 export function FeaturedProjectsSection() {
     const projects = [
@@ -25,7 +25,7 @@ export function FeaturedProjectsSection() {
             </div>
 
             <div id="featured-projects-section-scroll-indicator" className="flex flex-1 items-center justify-center">
-                <SectionScrollDownIndicator enabled={true} nextSectionId="contact" />
+                <SectionScrollDownIndicator enabled={true} nextSectionId="certifications" />
             </div>
         </div>
     )

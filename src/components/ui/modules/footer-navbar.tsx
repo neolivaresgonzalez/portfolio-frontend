@@ -5,7 +5,7 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/shadcn-ui/navigation-menu"
 import { Link } from "lucide-react"
 
 export function FooterNavbar() {

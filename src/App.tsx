@@ -4,8 +4,9 @@ import { AboutSection } from '@/components/ui/sections/about-section'
 import { SkillsSection } from '@/components/ui/sections/skills-section'
 import { ContactSection } from '@/components/ui/sections/contact-section'
 import { FeaturedProjectsSection } from '@/components/ui/sections/featured-projects-section'
-import { FooterNavbar } from '@/components/ui/footer-navbar'
+import { FooterNavbar } from '@/components/ui/modules/footer-navbar'
 import { Layout } from '@/components/layout'
+import { CertificationsSection } from '@/components/ui/sections/certifications-section'
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
       </section>
       <section id="featured-projects" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
         <FeaturedProjectsSection />
+      </section>
+      <section id="certifications" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+        <CertificationsSection />
       </section>
       <section id="contact" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
         <ContactSection />

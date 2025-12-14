@@ -1,7 +1,7 @@
-import { Form } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { FormField, FormItem, FormLabel, FormDescription, FormControl, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/shadcn-ui/form";
+import { Button } from "@/components/ui/shadcn-ui/button";
+import { FormField, FormItem, FormLabel, FormDescription, FormControl, FormMessage } from "@/components/ui/shadcn-ui/form";
+import { Input } from "@/components/ui/shadcn-ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
