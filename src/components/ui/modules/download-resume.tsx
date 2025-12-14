@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/shadcn-ui/button"
 import type { DownloadResumeModuleProps } from "@/types/download-resume"
 import {
     ResponsiveModal,
@@ -9,7 +9,7 @@ import {
     ResponsiveModalHeader,
     ResponsiveModalTitle,
     ResponsiveModalTrigger
-} from "@/components/ui/responsive-modal"
+} from "@/components/ui/modules/responsive-modal"
 import { DownloadResumeForm } from "@/components/ui/forms/download-resume-form"
 
 export function DownloadResumeModule(props: DownloadResumeModuleProps) {

@@ -1,8 +1,8 @@
 import profilePicture from "@/assets/profile.jpeg"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/shadcn-ui/button"
 import type { ContactChannelProps } from "@/types/contact-channel-card"
-import { ContactChannel } from "@/components/ui/contact-channel"
-import { DownloadResumeModule } from "@/components/ui/modules/download-resume-module"
+import { ContactChannel } from "@/components/ui/modules/contact-channel"
+import { DownloadResumeModule } from "@/components/ui/modules/download-resume"
 
 const CONTACT_CHANNELS: ContactChannelProps[] = [
     {

@@ -1,7 +1,7 @@
 import {
     Card,
     CardContent
-} from "@/components/ui/card";
+} from "@/components/ui/shadcn-ui/card";
 import { ContactChannel } from "./contact-channel";
 import type { ContactChannelsProps } from "@/types/contact-channel-card";
 

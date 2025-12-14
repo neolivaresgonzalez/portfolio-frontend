@@ -1,10 +1,10 @@
-import { SkillItem } from "@/components/ui/skill-item";
+import { SkillItem } from "@/components/ui/modules/skill-item";
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/shadcn-ui/card";
 
 interface SkillsGroupProps {
     title: string;
@@ -19,7 +19,7 @@ export function SkillsGroup(props: SkillsGroupProps) {
             </CardHeader>
             <CardContent className="flex flex-row flex-wrap gap-2">
                 {Array.from({ length: props.fake || 0 }).map((_, index) => (
-                    <SkillItem key={index} />
+                    <SkillItem key={index} title="Skill name" />
                 ))}
             </CardContent>
         </Card>

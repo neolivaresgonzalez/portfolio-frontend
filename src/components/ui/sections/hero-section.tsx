@@ -1,4 +1,4 @@
-import { Hero } from "@/components/ui/hero"
+import { Hero } from "@/components/ui/shadcn-ui/hero"
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
 import type { HeroSectionProps } from "@/types/hero-section"
 

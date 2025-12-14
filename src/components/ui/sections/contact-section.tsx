@@ -1,7 +1,7 @@
-import { ContactChannels } from "@/components/ui/contact-channels-card"
+import { ContactChannels } from "@/components/ui/modules/contact-channels-card"
 import { ContactForm } from "@/components/ui/forms/contact-form"
 import type { ContactChannelProps } from "@/types/contact-channel-card"
-import { SectionTitle } from "../section-title"
+import { SectionTitle } from "../modules/section-title"
 
 const CONTACT_CHANNELS: ContactChannelProps[] = [
     {

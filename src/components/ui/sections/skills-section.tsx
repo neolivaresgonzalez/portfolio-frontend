@@ -1,7 +1,7 @@
-import { SkillsGroup } from "@/components/ui/skills-group";
+import { SkillsGroup } from "@/components/ui/modules/skills-group";
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator";
-import { SectionTitle } from "@/components/ui/section-title";
-import { Carousel } from "@/components/ui/carousel";
+import { SectionTitle } from "@/components/ui/modules/section-title";
+import { Carousel } from "@/components/ui/modules/carousel";
 
 export function SkillsSection() {
     const skillsGroups = [

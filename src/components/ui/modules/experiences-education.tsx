@@ -1,6 +1,6 @@
-import { ExperienceItem } from "@/components/ui/experience-item";
+import { ExperienceItem } from "@/components/ui/modules/experience-item";
 import type { ExperienceItemProps } from "@/types/experience-item";
-import { Carousel } from "@/components/ui/carousel";
+import { Carousel } from "@/components/ui/modules/carousel";
 
 const experiences: ExperienceItemProps[] = [
     {

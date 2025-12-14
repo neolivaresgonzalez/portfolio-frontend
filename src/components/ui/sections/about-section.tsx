@@ -1,7 +1,7 @@
-import { ExperiencesEducation } from "@/components/ui/experiences-education"
+import { ExperiencesEducation } from "@/components/ui/modules/experiences-education"
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
-import { SectionTitle } from "@/components/ui/section-title"
-import { ProfessionalSummary } from "@/components/ui/professional-summary"
+import { SectionTitle } from "@/components/ui/modules/section-title"
+import { ProfessionalSummary } from "@/components/ui/modules/professional-summary"
 
 
 export function AboutSection() {

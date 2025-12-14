@@ -1,5 +1,5 @@
-import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/ui/app-sidebar"
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/shadcn-ui/sidebar"
+import { AppSidebar } from "@/components/ui/modules/app-sidebar"
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (

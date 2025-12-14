@@ -3,7 +3,7 @@ import {
     CardContent,
     CardDescription,
     CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/shadcn-ui/card"
 
 import { GraduationCapIcon, BriefcaseIcon } from "lucide-react"
 
