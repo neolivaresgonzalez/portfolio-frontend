@@ -3,6 +3,7 @@ import { UserIcon } from "@/components/ui/icons/user"
 import { FolderCodeIcon } from "@/components/ui/icons/folder-code"
 import { SparklesIcon } from "@/components/ui/icons/sparkles"
 import { AtSignIcon } from "@/components/ui/icons/at-sign"
+import { BlocksIcon } from "@/components/ui/icons/blocks"
 // import { SearchIcon } from "@/components/ui/icons/search"
 // import { CoffeeIcon } from "@/components/ui/icons/coffee"
 // import { RocketIcon } from "@/components/ui/icons/rocket"
@@ -27,7 +28,7 @@ type MenuItem = {
 
 
 // Menu items mapping to home sections
-const homeItems: MenuItem[] = [
+export const homeItems: MenuItem[] = [
     {
         title: "Home",
         url: "#hero",
@@ -49,6 +50,11 @@ const homeItems: MenuItem[] = [
         icon: SparklesIcon,
     },
     {
+        title: "Certifications",
+        url: "#certifications",
+        icon: BlocksIcon,
+    },
+    {
         title: "Contact",
         url: "#contact",
         icon: AtSignIcon,
@@ -59,7 +65,7 @@ const homeItems: MenuItem[] = [
 
 // Menu items mapping to portfolio routes (feautured projects, professionals, personal, hobbies)
 // TODO:When project search component is implemented, add it to the menu items routing to filtered results
-const portfolioItems: MenuItem[] = [
+export const portfolioItems: MenuItem[] = [
     // {
     //     title: "Search Projects",
     //     url: "#search-projects",
