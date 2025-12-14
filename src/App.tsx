@@ -1,53 +1,40 @@
-import { useEffect, useState } from 'react'
-import { fetchAPI } from './lib/api'
-import type { Project, StrapiListResponse } from './types'
+import './App.css'
+import { HeroSection } from '@/components/ui/sections/hero-section'
+import { AboutSection } from '@/components/ui/sections/about-section'
+import { SkillsSection } from '@/components/ui/sections/skills-section'
+import { ContactSection } from '@/components/ui/sections/contact-section'
+import { FeaturedProjectsSection } from '@/components/ui/sections/featured-projects-section'
+import { FooterNavbar } from '@/components/ui/modules/footer-navbar'
+import { Layout } from '@/components/layout'
+import { CertificationsSection } from '@/components/ui/sections/certifications-section'
 
 function App() {
-  const [status, setStatus] = useState<string>('Checking API...')
-  const [projects, setProjects] = useState<Project[]>([])
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const loadProjects = async () => {
-      try {
-        setStatus('Fetching projects...')
-        const response = await fetchAPI<Project>('/projects')
-        // Handle both list and single response structures just in case, though /projects should be list
-        const data = Array.isArray(response.data) ? response.data : [response.data]
-        setProjects(data.map(item => item.attributes))
-        setStatus('Connected to Strapi!')
-      } catch (err) {
-        console.error(err)
-        setError('Failed to connect to Strapi. Check console for details.')
-        setStatus('Error')
-      }
-    }
-
-    loadProjects()
-  }, [])
-
   return (
-    <div className="app-container">
-      <h1>Portfolio Frontend</h1>
-      <div className="status-card">
-        <p><strong>Status:</strong> {status}</p>
-        {error && <p className="error">{error}</p>}
-        {projects.length > 0 && (
-          <div className="projects-preview">
-            <h2>Latest Projects</h2>
-            <ul>
-              {projects.map((project) => (
-                <li key={project.slug}>{project.title}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {status === 'Connected to Strapi!' && projects.length === 0 && (
-          <p>No projects found. Make sure to publish some content in Strapi!</p>
-        )}
-      </div>
-    </div>
+    <Layout>
+      <section id="hero" className="w-full max-w-full max-h-[calc(100vh-4rem)]">
+        <HeroSection scrollDownIndicator={true} />
+      </section>
+      <section id="about" className="w-full max-w-full maxn-h-[calc(100vh-4rem)] flex">
+        <AboutSection />
+      </section>
+      <section id="skills" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+        <SkillsSection />
+      </section>
+      <section id="featured-projects" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+        <FeaturedProjectsSection />
+      </section>
+      <section id="certifications" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+        <CertificationsSection />
+      </section>
+      <section id="contact" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+        <ContactSection />
+      </section>
+      <section id="footer" className="w-full max-w-full min-h-2xl flex">
+        <FooterNavbar />
+      </section>
+    </Layout>
   )
 }
 
 export default App
+
