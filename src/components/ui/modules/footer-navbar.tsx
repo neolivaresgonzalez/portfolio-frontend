@@ -1,12 +1,11 @@
 import {
     NavigationMenu,
-    NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
 } from "@/components/ui/shadcn-ui/navigation-menu"
-import { Link } from "lucide-react"
+
+import { homeItems } from "@/components/ui/modules/app-sidebar"
 
 export function FooterNavbar() {
     return (
@@ -16,21 +15,14 @@ export function FooterNavbar() {
                     <NavigationMenuList>
                         <NavigationMenuItem>
                             <ul className="flex flex-row gap-4 p-4 m-4">
-                                <li>
-                                    <NavigationMenuLink href="#hero">Home</NavigationMenuLink>
-                                </li>
-                                <li>
-                                    <NavigationMenuLink href="#about">About</NavigationMenuLink>
-                                </li>
-                                <li>
-                                    <NavigationMenuLink href="#skills">Skills</NavigationMenuLink>
-                                </li>
-                                <li>
-                                    <NavigationMenuLink href="#featured-projects">Projects</NavigationMenuLink>
-                                </li>
-                                <li>
-                                    <NavigationMenuLink href="#contact">Contact</NavigationMenuLink>
-                                </li>
+                                {homeItems.map((item) => (
+                                    <li key={item.title}>
+                                        <NavigationMenuLink href={item.url} className="flex flex-col md:flex-row items-center gap-3">
+                                            <item.icon />
+                                            <span className="hidden md:block">{item.title}</span>
+                                        </NavigationMenuLink>
+                                    </li>
+                                ))}
                             </ul>
                         </NavigationMenuItem>
                     </NavigationMenuList>
