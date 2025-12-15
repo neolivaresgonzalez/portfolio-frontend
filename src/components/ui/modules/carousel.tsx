@@ -46,11 +46,11 @@ export function Carousel({ children }: { children: React.ReactNode }) {
         <div className="relative group w-full">
             {/* Left Button */}
             {canScrollLeft && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex pointer-events-none">
                     <Button
                         variant="secondary"
                         size="icon"
-                        className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background border border-border"
+                        className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background border border-border pointer-events-auto"
                         onClick={() => scroll("left")}
                         aria-label="Scroll left"
                     >
@@ -63,18 +63,18 @@ export function Carousel({ children }: { children: React.ReactNode }) {
             <div
                 ref={scrollContainerRef}
                 id="skills-section-content"
-                className="flex items-center overflow-x-auto overflow-y-hidden gap-6 snap-x snap-mandatory scrollbar-hide max-w-full touch-pan-y pb-4 px-4 scroll-smooth"
+                className="flex items-center overflow-x-auto overflow-y-hidden gap-6 snap-x snap-mandatory scrollbar-hide max-w-full pb-4 px-4 scroll-smooth"
             >
                 {children}
             </div>
 
             {/* Right Button */}
             {canScrollRight && (
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 flex pointer-events-none">
                     <Button
                         variant="secondary"
                         size="icon"
-                        className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background border border-border"
+                        className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-background/80 backdrop-blur-sm shadow-md hover:bg-background border border-border pointer-events-auto"
                         onClick={() => scroll("right")}
                         aria-label="Scroll right"
                     >
