@@ -15,9 +15,9 @@ export function ContactChannel(props: ContactChannelProps) {
             target="_blank"
             rel="noopener noreferrer"
         >
-            <Item>
-                <ItemContent className="flex flex-row gap-2 justify-center">
-                    <div className="flex">
+            <Item className="items-center justify-center">
+                <ItemContent>
+                    <div>
                         {
                             props.kind === "email" ? (
                                 <Mail />
@@ -33,7 +33,7 @@ export function ContactChannel(props: ContactChannelProps) {
                     <div>
                         {
                             props.text ? (
-                                <p className="text-lg">{props.value}</p>
+                                <p className="text-sm md:text-md lg:text-lg">{props.value}</p>
                             ) : null
                         }
                     </div>

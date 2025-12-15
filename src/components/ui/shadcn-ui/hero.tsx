@@ -34,21 +34,21 @@ const CONTACT_CHANNELS: ContactChannelProps[] = [
 export function Hero() {
 
     return (
-        <div className="flex flex-row flex-wrap">
+        <div className="flex flex-row flex-wrap max-w-full justify-center md:justify-between items-center gap-4">
             <div id="hero-section-content-profile-picture" className="flex items-center justify-center">
-                <img src={profilePicture} className="flex-1 max-w-2xs h-auto aspect-square object-cover rounded-full m-4" alt="Profile Picture" />
+                <img src={profilePicture} className="w-full max-w-3xs h-auto aspect-square rounded-full" alt="handsome guy with Toronto skyline in the background" />
             </div>
-            <div id="hero-section-main-info" className="flex flex-1 flex-col items-center justify-center gap-5">
-                <div id="hero-section-main-info-text" className="flex flex-1 flex-col items-center justify-center gap-2">
+            <div id="hero-section-main-info" className="flex w-full md:w-1/2 flex-col items-center justify-center gap-5">
+                <div id="hero-section-main-info-text" className="flex w-full flex-col items-center justify-center gap-2">
                     <p className="text-xl text-center">Hello I'm</p>
                     <h1 className="text-3xl font-bold text-center">Nicolás Olivares</h1>
                     <p className="text-lg font-bold text-center">Software Engineer</p>
                 </div>
-                <div id="hero-section-main-info-buttons" className="flex flex-1 flex-row items-center justify-center gap-4">
+                <div id="hero-section-main-info-buttons" className="flex w-full flex-1 flex-row items-center justify-center gap-4">
                     <DownloadResumeModule side="left" />
                     <Button variant="default" onClick={() => window.scrollTo({ top: document.getElementById("contact")?.offsetTop || 0, behavior: "smooth" })} className="">Contact Me</Button>
                 </div>
-                <div id="hero-section-main-info-socials" className="flex flex-1 flex-row items-center justify-center gap-4">
+                <div id="hero-section-main-info-socials" className="flex w-full flex-row flex-wrap items-center justify-center gap-1">
                     {
                         CONTACT_CHANNELS.map((channel, index) => (
                             <ContactChannel
