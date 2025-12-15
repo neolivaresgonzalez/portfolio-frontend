@@ -37,8 +37,8 @@ export function FeaturedProjectsSection() {
     }, [i18n.language]);
 
     return (
-        <div id="featured-projects-section" className="flex flex-1 flex-col gap-5 container mx-auto px-4 sm:px-6 lg:px-8">
-            <div id="featured-projects-section-title" className="flex justify-center w-full m-4 p-4">
+        <div id="featured-projects-section" className="flex flex-col min-h-0 py-8 lg:py-16 w-full max-w-[100vw]">
+            <div id="featured-projects-section-title" className="flex justify-center w-full mb-8 px-4">
                 <SectionTitle title={t('featured_projects', 'Featured projects')} subtitle={t('browse_featured', 'Browse my featured projects')} />
             </div>
             <div id="featured-projects-section-content-container" className="flex flex-1 flex-col gap-5 min-h-0">
