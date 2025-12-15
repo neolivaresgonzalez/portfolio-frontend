@@ -1,30 +1,59 @@
-import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
+import { useEffect, useState } from "react"
+import { useTranslation } from "react-i18next"
+import { fetchAPI } from "@/lib/strapi"
 import { ProjectItem } from "@/components/ui/modules/project-item"
+import type { Project } from "@/components/ui/modules/project-item"
+import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
 import { SectionTitle } from "@/components/ui/modules/section-title";
-import { Carousel } from "@/components/ui/modules/carousel";
 
 export function FeaturedProjectsSection() {
-    const projects = [
-        { title: "Fake project 1" },
-        { title: "Fake project 2" },
-        { title: "Fake project 3" },
-        { title: "Fake project 4" },
-        { title: "Fake project 5" },
-    ];
+    const { t, i18n } = useTranslation();
+    const [projects, setProjects] = useState<Project[]>([]);
+
+    useEffect(() => {
+        const loadFeatured = async () => {
+            try {
+                const res = await fetchAPI('/projects', {
+                    locale: i18n.language,
+                    filters: {
+                        isFeatured: {
+                            $eq: true
+                        }
+                    },
+                    pagination: {
+                        pageSize: 3
+                    },
+                    populate: ['coverImage', 'Stack', 'links'],
+                    sort: ['order:asc', 'featuredSince:desc']
+                });
+                if (res.data) {
+                    setProjects(res.data);
+                }
+            } catch (error) {
+                console.error("Failed to load featured projects", error);
+            }
+        };
+        loadFeatured();
+    }, [i18n.language]);
+
     return (
-        <div id="featured-projects-section" className="flex flex-1 flex-col gap-5">
+        <div id="featured-projects-section" className="flex flex-1 flex-col gap-5 container mx-auto px-4 sm:px-6 lg:px-8">
             <div id="featured-projects-section-title" className="flex justify-center w-full m-4 p-4">
-                <SectionTitle title="Featured projects" subtitle="Browse my featured projects" />
+                <SectionTitle title={t('featured_projects', 'Featured projects')} subtitle={t('browse_featured', 'Browse my featured projects')} />
             </div>
-            <div id="featured-projects-section-content-container" className="flex flex-1 flex-col gap-5">
-                <Carousel>
-                    {projects.map((project, index) => (
-                        <ProjectItem key={`${project.title}-${index}`} title={project.title} />
+            <div id="featured-projects-section-content-container" className="flex flex-1 flex-col gap-5 min-h-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+                    {projects.map((project) => (
+                        <ProjectItem
+                            key={project.id}
+                            project={project}
+                            className="w-full h-full"
+                        />
                     ))}
-                </Carousel>
+                </div>
             </div>
 
-            <div id="featured-projects-section-scroll-indicator" className="flex flex-1 items-center justify-center">
+            <div id="featured-projects-section-scroll-indicator" className="flex items-center justify-center py-8 mt-auto shrink-0">
                 <SectionScrollDownIndicator enabled={true} nextSectionId="certifications" />
             </div>
         </div>

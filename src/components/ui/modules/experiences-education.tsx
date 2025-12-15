@@ -38,7 +38,7 @@ const experiences: ExperienceItemProps[] = [
 
 export function ExperiencesEducation() {
     return (
-        <div id="experiences-education-container" className="flex flex-col gap-5">
+        <div id="experiences-education-container" className="flex flex-col gap-5 w-full max-w-[100vw] overflow-hidden">
             <Carousel>
                 {experiences.map((experience, index) => (
                     <ExperienceItem key={index} {...experience} />

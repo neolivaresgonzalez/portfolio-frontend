@@ -32,15 +32,16 @@ const CONTACT_CHANNELS: ContactChannelProps[] = [
 
 export function ContactSection() {
     return (
-        <div id="contact-section" className="flex flex-col">
-            <div id="contact-section-title" className="flex justify-center w-full m-4 p-4">
+        <div id="contact-section" className="flex flex-col min-h-0 py-8 lg:py-16 w-full max-w-[100vw] overflow-x-hidden">
+            <div id="contact-section-title" className="flex justify-center w-full mb-8 px-4">
                 <SectionTitle title="Contact me" subtitle="Get in touch" />
             </div>
-            <div id="contact-section-content" className="flex flex-col justify-center w-full m-4 p-4 gap-4">
-                <div id="contact-section-content-contact-channels" className="flex flex-col justify-center w-full m-4 p-4 gap-4">
+
+            <div id="contact-section-content" className="flex flex-1 flex-col justify-center items-center gap-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-full w-full min-w-0">
+                <div id="contact-section-content-contact-channels" className="flex flex-col items-center justify-center w-full max-w-4xl">
                     <ContactChannels channels={CONTACT_CHANNELS} />
                 </div>
-                <div id="contact-section-content-contact-form" className="flex flex-col justify-center w-full m-4 p-4 gap-4">
+                <div id="contact-section-content-contact-form" className="flex flex-col items-center justify-center w-full max-w-xl">
                     <ContactForm />
                 </div>
             </div>
