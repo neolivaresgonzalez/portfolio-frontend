@@ -9,25 +9,25 @@ import { FooterNavbar } from '@/components/ui/modules/footer-navbar'
 export function HomePage() {
     return (
         <>
-            <section id="hero" className="w-full max-w-full max-h-[calc(100vh-4rem)]">
+            <section id="hero" className="w-full max-w-full">
                 <HeroSection scrollDownIndicator={true} />
             </section>
-            <section id="about" className="w-full max-w-full maxn-h-[calc(100vh-4rem)] flex">
+            <section id="about" className="w-full max-w-full flex">
                 <AboutSection />
             </section>
-            <section id="skills" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+            <section id="skills" className="w-full max-w-full flex">
                 <SkillsSection />
             </section>
-            <section id="featured-projects" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+            <section id="featured-projects" className="w-full max-w-full flex">
                 <FeaturedProjectsSection />
             </section>
-            <section id="certifications" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+            <section id="certifications" className="w-full max-w-full flex">
                 <CertificationsSection />
             </section>
-            <section id="contact" className="w-full max-w-full min-h-[calc(100vh-4rem)] flex">
+            <section id="contact" className="w-full max-w-full flex">
                 <ContactSection />
             </section>
-            <section id="footer" className="w-full max-w-full min-h-2xl flex">
+            <section id="footer" className="w-full max-w-full flex">
                 <FooterNavbar />
             </section>
         </>

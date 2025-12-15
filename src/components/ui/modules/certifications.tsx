@@ -30,24 +30,6 @@ const CERTIFICATIONS: Certification[] = [
         url: "https://www.credential.net/68696a4e-e715-470a-8970-367683b2ffb4#acc.iDCbtQyH",
         skills: ["Programación en Python", "Procesamiento de datos", "Conceptos básicos de programación y control de Flujo"],
     },
-    {
-        title: "Curso Herramientas de Programación en Python para Procesamiento de Datos",
-        description: "Este programa consistió en enseñar al participante conceptos y herramientas básicas de programación con Python, enfocadas en optimizar el procesamiento de datos.  Se abordó la identificación y aplicación de nociones básicas de programación orientada a objetos, como variables, funciones, operadores lógicos, y control de flujo, además de manejar archivos y datos.  Al término del programa el estudiante está en condiciones de mejorar la eficiencia en la gestión de información, facilitando sus tareas laborales y abriendo nuevas oportunidades de trabajo, esencial para la adaptación a entornos de datos dinámicos.",
-        issuer: "Pontifical Catholic University of Chile",
-        issuedOn: "September 8, 2025",
-        image: "https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg",
-        url: "https://www.credential.net/68696a4e-e715-470a-8970-367683b2ffb4#acc.iDCbtQyH",
-        skills: ["Programación en Python", "Procesamiento de datos", "Conceptos básicos de programación y control de Flujo"],
-    },
-    {
-        title: "Curso Herramientas de Programación en Python para Procesamiento de Datos",
-        description: "Este programa consistió en enseñar al participante conceptos y herramientas básicas de programación con Python, enfocadas en optimizar el procesamiento de datos.  Se abordó la identificación y aplicación de nociones básicas de programación orientada a objetos, como variables, funciones, operadores lógicos, y control de flujo, además de manejar archivos y datos.  Al término del programa el estudiante está en condiciones de mejorar la eficiencia en la gestión de información, facilitando sus tareas laborales y abriendo nuevas oportunidades de trabajo, esencial para la adaptación a entornos de datos dinámicos.",
-        issuer: "Pontifical Catholic University of Chile",
-        issuedOn: "September 8, 2025",
-        image: "https://kit-digital-uc-prod.s3.amazonaws.com/assets/escudos/logo-uc-01.svg",
-        url: "https://www.credential.net/68696a4e-e715-470a-8970-367683b2ffb4#acc.iDCbtQyH",
-        skills: ["Programación en Python", "Procesamiento de datos", "Conceptos básicos de programación y control de Flujo"],
-    },
 ]
 
 export function Certifications() {

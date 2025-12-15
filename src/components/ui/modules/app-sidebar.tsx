@@ -18,6 +18,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    useSidebar,
 } from "@/components/ui/shadcn-ui/sidebar"
 import { HashLink } from 'react-router-hash-link';
 
@@ -96,6 +97,14 @@ export const portfolioItems: MenuItem[] = [
 ]
 
 export function AppSidebar() {
+    const { setOpenMobile, isMobile } = useSidebar();
+
+    const handleLinkClick = () => {
+        if (isMobile) {
+            setOpenMobile(false);
+        }
+    }
+
     return (
         <Sidebar className="border-none">
             {/* <SidebarContent className="bg-linear-to-r from-orange-200 via-orange-100 to-background"> */}
@@ -107,7 +116,7 @@ export function AppSidebar() {
                             {homeItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <HashLink smooth to={item.url}>
+                                        <HashLink smooth to={item.url} onClick={handleLinkClick}>
                                             <item.icon />
                                             <span>{item.title}</span>
                                         </HashLink>
@@ -126,10 +135,10 @@ export function AppSidebar() {
                                     {portfolioItems.map((item) => (
                                         <SidebarMenuItem key={item.title}>
                                             <SidebarMenuButton asChild>
-                                                <a href={item.url}>
+                                                <HashLink smooth to={item.url} onClick={handleLinkClick}>
                                                     <item.icon />
                                                     <span>{item.title}</span>
-                                                </a>
+                                                </HashLink>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
                                     ))}
