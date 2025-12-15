@@ -6,12 +6,12 @@ import { ProfessionalSummary } from "@/components/ui/modules/professional-summar
 
 export function AboutSection() {
     return (
-        <div id="about-section" className="flex flex-col min-h-0 py-8 lg:py-16 w-full max-w-[100vw]n">
-            <div id="about-section-title" className="flex justify-center w-full mb-8 px-4">
+        <div id="about-section" className="flex flex-col w-full gap-4">
+            <div id="about-section-title" className="flex justify-center w-full">
                 <SectionTitle title="About me" subtitle="Get to know more" />
             </div>
 
-            <div id="about-section-content" className="flex flex-1 flex-col justify-center gap-8 container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
+            <div id="about-section-content" className="flex flex-col justify-center gap-4 container mx-auto px-4 sm:px-6 lg:px-8 max-w-full">
                 <div id="about-section-content-professional-summary" className="flex justify-center w-full">
                     <ProfessionalSummary />
                 </div>

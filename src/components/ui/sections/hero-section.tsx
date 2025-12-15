@@ -4,9 +4,9 @@ import type { HeroSectionProps } from "@/types/hero-section"
 
 export function HeroSection(props: HeroSectionProps) {
     return (
-        <div id="hero-section" className="flex flex-col relative w-full">
+        <div id="hero-section" className="flex flex-col w-full">
             {/* Main Content */}
-            <div id="hero-section-content" className="flex flex-1 items-center justify-center w-full px-4 py-12 md:py-0">
+            <div id="hero-section-content" className="flex items-center justify-center w-full px-4 py-12 md:py-0">
                 <Hero />
             </div>
 

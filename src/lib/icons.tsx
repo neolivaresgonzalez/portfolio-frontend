@@ -11,6 +11,7 @@ import {
     Workflow,
     Palette
 } from "lucide-react";
+import { UcIcon, KimnItIcon, UsachIcon } from "@/components/ui/icons/company-logos-icons";
 
 // Map skill names to tech-stack-icons names
 // See https://tech-stack-icons.vercel.app/ for list
@@ -78,11 +79,19 @@ export const getLucideIcon = (name: string) => {
     if (normalized.includes("programación")) return Code2Icon;
     if (normalized.includes("data")) return Blocks;
 
-    return Blocks; // Ultimate fallback
+    return null;
 };
 
+export const getCompanyLogo = (company: string) => {
+    const normalized = company.toLowerCase();
+    if (normalized.includes("kimn-it")) return KimnItIcon;
+    if (normalized.includes("puc") || normalized.includes("uc")) return UcIcon;
+    if (normalized.includes("usach")) return UsachIcon;
+    return Blocks;
+}
+
 // Helper component to render the icon
-export function SkillIcon({ name, className }: { name: string, className?: string }) {
+export function SpecialIcon({ name, className }: { name: string, className?: string }) {
     // 1. Try tech-stack-icons
     const iconName = getStackIconName(name);
     if (iconName) {
@@ -91,6 +100,14 @@ export function SkillIcon({ name, className }: { name: string, className?: strin
 
     // 2. Try Lucide fallback
     const LucideIcon = getLucideIcon(name);
-    return <LucideIcon className={className} />;
+    if (LucideIcon) {
+        return <LucideIcon className={className} />;
+    }
+
+    // 3. Try company logo
+    const CompanyLogo = getCompanyLogo(name);
+    if (CompanyLogo) {
+        return <CompanyLogo className={className} />;
+    }
 }
 

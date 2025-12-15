@@ -1,6 +1,6 @@
 import { ExperienceItem } from "@/components/ui/modules/experience-item";
-import type { ExperienceItemProps } from "@/types/experience-item";
-import { Carousel } from "@/components/ui/modules/carousel";
+import type { ExperienceItemProps } from "@/components/ui/modules/experience-item";
+import { Card, CardContent, CardTitle } from "@/components/ui/shadcn-ui/card";
 
 const experiences: ExperienceItemProps[] = [
     {
@@ -38,12 +38,17 @@ const experiences: ExperienceItemProps[] = [
 
 export function ExperiencesEducation() {
     return (
-        <div id="experiences-education-container" className="flex flex-col gap-5 w-full max-w-[100vw] overflow-hidden">
-            <Carousel>
+        <Card id="experiences-education-container" className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
+            <CardTitle>
+                <h2 id="experiences-education-title" className="text-base md:text-lg font-bold text-center">
+                    Employment & Education
+                </h2>
+            </CardTitle>
+            <CardContent className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
                 {experiences.map((experience, index) => (
                     <ExperienceItem key={index} {...experience} />
                 ))}
-            </Carousel>
-        </div>
+            </CardContent>
+        </Card>
     )
 }

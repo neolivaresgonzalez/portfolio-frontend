@@ -63,7 +63,7 @@ export function Carousel({ children }: { children: React.ReactNode }) {
             <div
                 ref={scrollContainerRef}
                 id="skills-section-content"
-                className="flex items-center overflow-x-auto overflow-y-hidden gap-6 snap-x snap-mandatory scrollbar-hide max-w-full pb-4 px-4 scroll-smooth"
+                className="flex items-center justify-center overflow-x-auto overflow-y-hidden gap-6 snap-x snap-mandatory scrollbar-hide max-w-full pb-4 px-4 scroll-smooth"
             >
                 {children}
             </div>

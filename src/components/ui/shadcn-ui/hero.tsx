@@ -44,7 +44,7 @@ export function Hero() {
                     <h1 className="text-3xl font-bold text-center">Nicolás Olivares</h1>
                     <p className="text-lg font-bold text-center">Software Engineer</p>
                 </div>
-                <div id="hero-section-main-info-buttons" className="flex w-full flex-1 flex-row items-center justify-center gap-4">
+                <div id="hero-section-main-info-buttons" className="flex w-full flex-row md:flex-row flex-wrap items-center justify-center gap-4">
                     <DownloadResumeModule side="left" />
                     <Button variant="default" onClick={() => window.scrollTo({ top: document.getElementById("contact")?.offsetTop || 0, behavior: "smooth" })} className="">Contact Me</Button>
                 </div>
