@@ -1,6 +1,6 @@
 import type { Certification } from "@/types/certification"
 import { CertificationItem } from "@/components/ui/modules/certification-item"
-import { Carousel } from "@/components/ui/modules/carousel"
+
 
 const CERTIFICATIONS: Certification[] = [
     {
@@ -35,15 +35,10 @@ const CERTIFICATIONS: Certification[] = [
 export function Certifications() {
 
     return (
-        // <div id="certifications" className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-        //     {CERTIFICATIONS.map((certification, index) => (
-        //         <CertificationItem key={index} {...certification} />
-        //     ))}
-        // </div>
-        <Carousel>
+        <div id="certifications" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {CERTIFICATIONS.map((certification, index) => (
                 <CertificationItem key={index} {...certification} />
             ))}
-        </Carousel>
+        </div>
     )
 }

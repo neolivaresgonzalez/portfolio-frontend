@@ -29,9 +29,9 @@ export function CertificationItem(props: Certification) {
             </CardContent>
             {
                 props.skills && (
-                    <div>
-                        <h3 className="font-bold">Skills</h3>
-                        <div className="flex flex-wrap">
+                    <div className="px-6 pb-4">
+                        <h3 className="font-bold mb-2">Skills</h3>
+                        <div className="flex flex-wrap gap-2">
                             {props.skills.map((skill, index) => (
                                 <SkillItem key={index} title={skill} />
                             ))}

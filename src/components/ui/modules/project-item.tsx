@@ -3,32 +3,93 @@ import {
     CardContent,
     CardHeader,
     CardTitle,
-    CardAction
+    CardDescription,
+    CardFooter
 } from "@/components/ui/shadcn-ui/card";
 import { Button } from "@/components/ui/shadcn-ui/button";
-import projectThumbnail from "@/assets/profile.jpeg";
+import { Badge } from "@/components/ui/shadcn-ui/badge";
+import { Link } from "react-router-dom";
+import { getStrapiMedia } from "@/lib/strapi";
+import { SpecialIcon } from "@/lib/icons";
 
-interface ProjectItemProps {
+export interface Project {
+    id: number;
+    documentId: string;
     title: string;
-    fake?: number;
+    slug: string;
+    shortSummary?: string;
+    role?: string;
+    highlights?: string;
+    Stack?: {
+        name: string;
+        slug: string;
+    }[];
+    links?: {
+        url: string;
+        label: string;
+    }[];
+    isFeatured?: boolean;
+    featuredSince?: string;
+    status?: 'active' | 'completed' | 'archived';
+    order?: number;
+    coverImage?: {
+        url: string;
+        alternativeText?: string;
+    };
 }
 
-export function ProjectItem(props: ProjectItemProps) {
+interface ProjectItemProps {
+    project: Project;
+    className?: string;
+}
+
+export function ProjectItem({ project, className }: ProjectItemProps) {
+    const imageUrl = getStrapiMedia(project.coverImage?.url ?? null);
+
     return (
-        <Card className="snap-center w-full max-w-md shrink-0">
-            <CardHeader className="flex">
-                <img src={projectThumbnail} alt="Project Image" className="flex flex-1 keep-aspect-ratio w-full h-64 object-cover rounded-xl" />
+        <Card className={`snap-center shrink-0 flex flex-col h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-muted/40 overflow-hidden group ${className || 'w-full max-w-md'}`}>
+            <CardHeader className="p-0">
+                {imageUrl ? (
+                    <div className="w-full aspect-16/10 overflow-hidden">
+                        <img
+                            src={imageUrl}
+                            alt={project.coverImage?.alternativeText || project.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                    </div>
+                ) : (
+                    <div className="w-full aspect-16/10 bg-muted/20 flex items-center justify-center text-muted-foreground/40 border-b border-border/20">
+                        <span className="text-sm font-medium">No Preview</span>
+                    </div>
+                )}
             </CardHeader>
-            <CardContent className="flex flex-row flex-wrap gap-2">
-                <CardTitle className="text-2xl text-center w-full">
-                    <p>{props.title}</p>
-                </CardTitle>
+            <CardContent className="flex flex-col gap-4 p-6 flex-1">
+                <div className="space-y-2">
+                    <CardTitle className="text-xl line-clamp-1">{project.title}</CardTitle>
+                    {project.shortSummary && (
+                        <CardDescription className="line-clamp-3">
+                            {project.shortSummary}
+                        </CardDescription>
+                    )}
+                </div>
+
+                {project.Stack && project.Stack.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                        {project.Stack.slice(0, 3).map((tag) => (
+                            <Badge key={tag.slug} variant="secondary" className="flex items-center gap-2">
+                                <SpecialIcon name={tag.name} className="size-6" />
+                                <p className="text-xs md:text-sm">{tag.name}</p>
+
+                            </Badge>
+                        ))}
+                    </div>
+                )}
             </CardContent>
-            <CardAction className="flex flex-row flex-wrap gap-2 w-full justify-center">
-                <Button variant="default">See more</Button>
-                <Button variant="default">GitHub</Button>
-                <Button variant="default">Live Demo</Button>
-            </CardAction>
+            <CardFooter className="p-6 pt-0 mt-auto flex gap-2">
+                <Link to={`/projects/${project.slug}`} className="w-full">
+                    <Button variant="default" className="w-full">See Details</Button>
+                </Link>
+            </CardFooter>
         </Card>
     )
 }

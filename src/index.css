@@ -67,11 +67,36 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* section #skills-section {
+  border: 4px solid orange;
+} */
+
+/* section #skills-section div {
+  border: 1px solid green;
+} */
+
+
 /* 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --line-height: 1.5;
+  --font-weight: 400;
+
+  --color-bg: #0f0f0f;
+  --color-text: #f0f0f0;
+  --color-primary: #646cff;
+  --color-secondary: #535bf2;
+
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
 
   color-scheme: light;
 

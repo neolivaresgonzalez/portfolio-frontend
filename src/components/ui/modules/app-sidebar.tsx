@@ -4,7 +4,8 @@ import { FolderCodeIcon } from "@/components/ui/icons/folder-code"
 import { SparklesIcon } from "@/components/ui/icons/sparkles"
 import { AtSignIcon } from "@/components/ui/icons/at-sign"
 import { BlocksIcon } from "@/components/ui/icons/blocks"
-// import { SearchIcon } from "@/components/ui/icons/search"
+import { SearchIcon } from "@/components/ui/icons/search"
+import { ClockIcon } from "@/components/ui/icons/clock"
 // import { CoffeeIcon } from "@/components/ui/icons/coffee"
 // import { RocketIcon } from "@/components/ui/icons/rocket"
 // import { HeartIcon } from "@/components/ui/icons/heart"
@@ -18,7 +19,10 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    useSidebar,
 } from "@/components/ui/shadcn-ui/sidebar"
+import { HashLink } from 'react-router-hash-link';
+
 
 type MenuItem = {
     title: string;
@@ -31,32 +35,37 @@ type MenuItem = {
 export const homeItems: MenuItem[] = [
     {
         title: "Home",
-        url: "#hero",
+        url: "/#hero",
         icon: HomeIcon,
     },
     {
         title: "About",
-        url: "#about",
+        url: "/#about",
         icon: UserIcon,
     },
     {
+        title: "Experience",
+        url: "/#experience",
+        icon: ClockIcon,
+    },
+    {
         title: "Skills",
-        url: "#skills",
+        url: "/#skills",
         icon: FolderCodeIcon,
     },
     {
         title: "Featured Projects",
-        url: "#featured-projects",
+        url: "/#featured-projects",
         icon: SparklesIcon,
     },
     {
         title: "Certifications",
-        url: "#certifications",
+        url: "/#certifications",
         icon: BlocksIcon,
     },
     {
         title: "Contact",
-        url: "#contact",
+        url: "/#contact",
         icon: AtSignIcon,
     },
 ]
@@ -66,11 +75,11 @@ export const homeItems: MenuItem[] = [
 // Menu items mapping to portfolio routes (feautured projects, professionals, personal, hobbies)
 // TODO:When project search component is implemented, add it to the menu items routing to filtered results
 export const portfolioItems: MenuItem[] = [
-    // {
-    //     title: "Search Projects",
-    //     url: "#search-projects",
-    //     icon: SearchIcon,
-    // },
+    {
+        title: "Explore Projects",
+        url: "/projects",
+        icon: SearchIcon,
+    },
     // {
     //     title: "Featured Projects",
     //     url: "#featured-projects",
@@ -94,6 +103,14 @@ export const portfolioItems: MenuItem[] = [
 ]
 
 export function AppSidebar() {
+    const { setOpenMobile, isMobile } = useSidebar();
+
+    const handleLinkClick = () => {
+        if (isMobile) {
+            setOpenMobile(false);
+        }
+    }
+
     return (
         <Sidebar className="border-none">
             {/* <SidebarContent className="bg-linear-to-r from-orange-200 via-orange-100 to-background"> */}
@@ -105,10 +122,10 @@ export function AppSidebar() {
                             {homeItems.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild>
-                                        <a href={item.url}>
+                                        <HashLink smooth to={item.url} onClick={handleLinkClick}>
                                             <item.icon />
                                             <span>{item.title}</span>
-                                        </a>
+                                        </HashLink>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
@@ -124,10 +141,10 @@ export function AppSidebar() {
                                     {portfolioItems.map((item) => (
                                         <SidebarMenuItem key={item.title}>
                                             <SidebarMenuButton asChild>
-                                                <a href={item.url}>
+                                                <HashLink smooth to={item.url} onClick={handleLinkClick}>
                                                     <item.icon />
                                                     <span>{item.title}</span>
-                                                </a>
+                                                </HashLink>
                                             </SidebarMenuButton>
                                         </SidebarMenuItem>
                                     ))}

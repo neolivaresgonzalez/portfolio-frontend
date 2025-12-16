@@ -2,13 +2,9 @@ import { Button } from "@/components/ui/shadcn-ui/button"
 import type { DownloadResumeModuleProps } from "@/types/download-resume"
 import {
     ResponsiveModal,
-    ResponsiveModalClose,
     ResponsiveModalContent,
-    ResponsiveModalDescription,
-    ResponsiveModalFooter,
     ResponsiveModalHeader,
-    ResponsiveModalTitle,
-    ResponsiveModalTrigger
+    ResponsiveModalTrigger,
 } from "@/components/ui/modules/responsive-modal"
 import { DownloadResumeForm } from "@/components/ui/forms/download-resume-form"
 

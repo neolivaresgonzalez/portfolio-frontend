@@ -1,0 +1,130 @@
+import StackIcon from "tech-stack-icons";
+import {
+    Blocks,
+    Database,
+    Code2Icon,
+    Globe,
+    Terminal,
+    Layout,
+    Server,
+    Cloud,
+    Workflow,
+    Palette,
+    Mail,
+    Phone
+} from "lucide-react";
+import { UcIcon, KimnItIcon, UsachIcon } from "@/components/ui/icons/company-logos-icons";
+import { StrapiIcon } from "@/components/ui/icons/strapi";
+import { LinkedInIcon } from "@/components/ui/icons/linkedin";
+import { MondayIcon } from "@/components/ui/icons/monday";
+import { WrikeIcon } from "@/components/ui/icons/wrike";
+import { JiraIcon } from "@/components/ui/icons/jira";
+import { ConfluenceIcon } from "@/components/ui/icons/confluence";
+import { LogoIcon } from "@/components/ui/icons/logo";
+
+// Map skill names to tech-stack-icons names
+// See https://tech-stack-icons.vercel.app/ for list
+export const getStackIconName = (name: string): string | null => {
+    const normalized = name.toLowerCase();
+
+    if (normalized.includes("netcore")) return "netcore";
+    if (normalized.includes("react")) return "react";
+    if (normalized.includes("flask")) return "flask";
+    if (normalized.includes("next")) return "nextjs2";
+    if (normalized.includes("node")) return "nodejs";
+    if (normalized.includes("typescript")) return "typescript";
+    if (normalized.includes("javascript")) return "js";
+    if (normalized.includes("tailwind")) return "tailwindcss";
+    if (normalized.includes("html")) return "html5";
+    if (normalized.includes("css")) return "css3";
+    if (normalized.includes("python")) return "python";
+    if (normalized.includes("mongo")) return "mongodb";
+    if (normalized.includes("postgres")) return "postgresql";
+    if (normalized.includes("redis")) return "redis";
+    if (normalized.includes("aws")) return "aws";
+    if (normalized.includes("huawei")) return "huawei";
+    if (normalized.includes("azure")) return "azure";
+    if (normalized.includes("vercel")) return "vercel";
+    if (normalized.includes("digitalocean")) return "digitalocean";
+    if (normalized.includes("git") && !(normalized.includes("hub") || normalized.includes("lab"))) return "git";
+    if (normalized.includes("github")) return "github";
+    if (normalized.includes("gitlab")) return "gitlab";
+    if (normalized.includes("docker")) return "docker";
+    if (normalized.includes("linux")) return "linux";
+    if (normalized.includes("figma")) return "figma";
+    if (normalized.includes("postman")) return "postman";
+    if (normalized.includes("bash")) return "bash";
+    if (normalized.includes("illustrator")) return "illustrator";
+    if (normalized.includes("angular")) return "angular17";
+    if (normalized.includes("adobe")) return "adobe";
+    if (normalized.includes("atlassian")) return "atlassian";
+    if (normalized.includes("vscode")) return "vscode";
+    if (normalized.includes("c#")) return "c#";
+    if (normalized.includes("redis")) return "redis";
+    if (normalized.includes("mysql")) return "mysql";
+    if (normalized.includes("java")) return "java";
+    if (normalized.includes("electron")) return "electron";
+    if (normalized.includes("i18next")) return "i18next";
+    if (normalized.includes("nodejs")) return "nodejs";
+    if (normalized.includes("npm")) return "npm";
+    if (normalized.includes("express")) return "expressjs";
+
+    return null;
+};
+
+// Fallback: Map skill names to Lucide icons if tech-stack-icons misses them
+export const getLucideIcon = (name: string) => {
+    const normalized = name.toLowerCase();
+    console.log(normalized);
+
+    if (normalized.includes("logo")) return LogoIcon;
+    if (normalized.includes("strapi")) return StrapiIcon;
+    if (normalized.includes("monday")) return MondayIcon;
+    if (normalized.includes("linkedin")) return LinkedInIcon;
+    if (normalized.includes("wrike")) return WrikeIcon;
+    if (normalized.includes("jira")) return JiraIcon;
+    if (normalized.includes("confluence")) return ConfluenceIcon;
+    if (normalized.includes("phone")) return Phone;
+    if (normalized.includes("api")) return Globe;
+    if (normalized.includes("database") || normalized.includes("sql")) return Database;
+    if (normalized.includes("server") || normalized.includes("backend")) return Server;
+    if (normalized.includes("cloud")) return Cloud;
+    if (normalized.includes("terminal") || normalized.includes("cli")) return Terminal;
+    if (normalized.includes("design") || normalized.includes("ui") || normalized.includes("ux")) return Palette;
+    if (normalized.includes("workflow") || normalized.includes("agile") || normalized.includes("scrum")) return Workflow;
+    if (normalized.includes("frontend") || normalized.includes("web")) return Layout;
+    if (normalized.includes("programación")) return Code2Icon;
+    if (normalized.includes("data")) return Blocks;
+    if (normalized.includes("email")) return Mail;
+    return null;
+};
+
+export const getCompanyLogo = (company: string) => {
+    const normalized = company.toLowerCase();
+    if (normalized.includes("kimn-it")) return KimnItIcon;
+    if (normalized.includes("puc") || normalized.includes("uc")) return UcIcon;
+    if (normalized.includes("usach")) return UsachIcon;
+    return Blocks;
+}
+
+// Helper component to render the icon
+export function SpecialIcon({ name, className }: { name: string, className?: string }) {
+    // 1. Try tech-stack-icons
+    const iconName = getStackIconName(name);
+    if (iconName) {
+        return <StackIcon name={iconName} className={className} />;
+    }
+
+    // 2. Try Lucide fallback
+    const LucideIcon = getLucideIcon(name);
+    if (LucideIcon) {
+        return <LucideIcon className={className} />;
+    }
+
+    // 3. Try company logo
+    const CompanyLogo = getCompanyLogo(name);
+    if (CompanyLogo) {
+        return <CompanyLogo className={className} />;
+    }
+}
+
