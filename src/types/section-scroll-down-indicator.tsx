@@ -1,5 +1,5 @@
 export interface SectionScrollDownIndicatorProps {
     enabled: boolean
-    nextSectionId: string
+    nextSectionId?: string
     onClick?: () => void
 }

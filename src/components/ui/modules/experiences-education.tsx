@@ -5,16 +5,6 @@ import { Card, CardContent, CardTitle } from "@/components/ui/shadcn-ui/card";
 const experiences: ExperienceItemProps[] = [
     {
         kind: "Employment",
-        title: "Project Engineer",
-        subtitle: "Software Engineer",
-        at: "Kimn-IT",
-        location: "Santiago, Chile",
-        website: "https://www.kimn-it.cl",
-        startDate: "2020",
-        endDate: "2022"
-    },
-    {
-        kind: "Employment",
         title: "IT Project Manager",
         subtitle: "Technical leadership",
         at: "PUC - Pontifical Catholic University",
@@ -22,6 +12,16 @@ const experiences: ExperienceItemProps[] = [
         website: "https://www.uc.cl",
         startDate: "2022",
         endDate: "2025"
+    },
+    {
+        kind: "Employment",
+        title: "Project Engineer",
+        subtitle: "Software Engineer",
+        at: "Kimn-IT",
+        location: "Santiago, Chile",
+        website: "https://www.kimn-it.cl",
+        startDate: "2020",
+        endDate: "2022"
     },
     {
         kind: "Education",

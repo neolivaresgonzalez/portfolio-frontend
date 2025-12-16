@@ -5,31 +5,58 @@ import { ContactSection } from '@/components/ui/sections/contact-section'
 import { FeaturedProjectsSection } from '@/components/ui/sections/featured-projects-section'
 import { CertificationsSection } from '@/components/ui/sections/certifications-section'
 import { FooterNavbar } from '@/components/ui/modules/footer-navbar'
+import type { SectionProps } from '@/types/section-props'
+import { ExperienceSection } from '@/components/ui/sections/experience-section'
+
+
+interface SectionList {
+    id: string
+    component: React.ReactNode
+}
+
+const sections: SectionList[] = [
+    {
+        id: "hero",
+        component: <HeroSection scrollDownIndicator={true} nextSectionId="about" />
+    },
+    {
+        id: "about",
+        component: <AboutSection scrollDownIndicator={true} nextSectionId="skills" />
+    },
+    {
+        id: "skills",
+        component: <SkillsSection scrollDownIndicator={true} nextSectionId="experience" />
+    },
+    {
+        id: "experience",
+        component: <ExperienceSection scrollDownIndicator={true} nextSectionId="featured-projects" />
+    },
+    {
+        id: "featured-projects",
+        component: <FeaturedProjectsSection scrollDownIndicator={true} nextSectionId="certifications" />
+    },
+    {
+        id: "certifications",
+        component: <CertificationsSection scrollDownIndicator={true} nextSectionId="contact" />
+    },
+    {
+        id: "contact",
+        component: <ContactSection scrollDownIndicator={true} nextSectionId="footer" />
+    },
+    {
+        id: "footer",
+        component: <FooterNavbar scrollDownIndicator={false} nextSectionId="" />
+    }
+]
 
 export function HomePage() {
     return (
         <>
-            <section id="hero" className="w-full max-w-full">
-                <HeroSection scrollDownIndicator={true} />
-            </section>
-            <section id="about" className="w-full max-w-full flex">
-                <AboutSection />
-            </section>
-            <section id="skills" className="w-full max-w-full flex">
-                <SkillsSection />
-            </section>
-            <section id="featured-projects" className="w-full max-w-full flex">
-                <FeaturedProjectsSection />
-            </section>
-            <section id="certifications" className="w-full max-w-full flex">
-                <CertificationsSection />
-            </section>
-            <section id="contact" className="w-full max-w-full flex">
-                <ContactSection />
-            </section>
-            <section id="footer" className="w-full max-w-full flex">
-                <FooterNavbar />
-            </section>
+            {sections.map((section) => (
+                <section id={section.id} className="w-full max-w-full">
+                    {section.component}
+                </section>
+            ))}
         </>
     )
 }

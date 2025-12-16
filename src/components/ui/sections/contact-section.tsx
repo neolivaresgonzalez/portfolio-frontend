@@ -2,6 +2,8 @@ import { ContactChannels } from "@/components/ui/modules/contact-channels-card"
 import { ContactForm } from "@/components/ui/forms/contact-form"
 import type { ContactChannelProps } from "@/types/contact-channel-card"
 import { SectionTitle } from "../modules/section-title"
+import type { SectionProps } from "@/types/section-props"
+import { SectionScrollDownIndicator } from "../icons/section-scroll-down-indicator"
 
 const CONTACT_CHANNELS: ContactChannelProps[] = [
     {
@@ -30,7 +32,7 @@ const CONTACT_CHANNELS: ContactChannelProps[] = [
     }
 ]
 
-export function ContactSection() {
+export function ContactSection(props: SectionProps) {
     return (
         <div id="contact-section" className="flex flex-col min-h-0 py-8 lg:py-16 w-full max-w-[100vw]">
             <div id="contact-section-title" className="flex justify-center w-full mb-8 px-4">
@@ -44,6 +46,10 @@ export function ContactSection() {
                 <div id="contact-section-content-contact-form" className="flex flex-col items-center justify-center w-full max-w-xl">
                     <ContactForm />
                 </div>
+            </div>
+
+            <div id="contact-section-scroll-indicator" className="flex items-center justify-center mt-auto pt-8 pb-8 shrink-0">
+                <SectionScrollDownIndicator enabled={props.scrollDownIndicator} nextSectionId={props.nextSectionId} />
             </div>
         </div>
     )

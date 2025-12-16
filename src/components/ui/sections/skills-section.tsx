@@ -2,8 +2,9 @@ import { SkillsGroup } from "@/components/ui/modules/skills-group";
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator";
 import { SectionTitle } from "@/components/ui/modules/section-title";
 import { Carousel } from "@/components/ui/modules/carousel";
+import type { SectionProps } from "@/types/section-props"
 
-export function SkillsSection() {
+export function SkillsSection(props: SectionProps) {
     const skillsGroups = [
         { title: "Languages", skills: ["TypeScript", "JavaScript", "HTML5", "CSS3", "Python", "SQL"] },
         { title: "Frameworks", skills: ["React", "Next.js", "Tailwind CSS", "Node.js", "Express"] },
@@ -28,7 +29,7 @@ export function SkillsSection() {
             </div>
 
             <div id="skills-section-scroll-indicator" className="flex items-center justify-center mt-auto pt-8 pb-8 shrink-0">
-                <SectionScrollDownIndicator enabled={true} nextSectionId="featured-projects" />
+                <SectionScrollDownIndicator enabled={props.scrollDownIndicator} nextSectionId={props.nextSectionId} />
             </div>
         </div >
     )

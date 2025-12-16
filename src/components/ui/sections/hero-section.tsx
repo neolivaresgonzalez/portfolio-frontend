@@ -1,8 +1,10 @@
-import { Hero } from "@/components/ui/shadcn-ui/hero"
+import { Hero } from "@/components/ui/modules/hero"
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
-import type { HeroSectionProps } from "@/types/hero-section"
+import type { SectionProps } from "@/types/section-props"
 
-export function HeroSection(props: HeroSectionProps) {
+
+
+export function HeroSection(props: SectionProps) {
     return (
         <div id="hero-section" className="flex flex-col w-full">
             {/* Main Content */}
@@ -11,7 +13,7 @@ export function HeroSection(props: HeroSectionProps) {
             </div>
 
             <div id="hero-section-scroll-indicator" className="flex items-center justify-center pb-8">
-                <SectionScrollDownIndicator enabled={props.scrollDownIndicator} nextSectionId="about" />
+                <SectionScrollDownIndicator enabled={props.scrollDownIndicator} nextSectionId={props.nextSectionId} />
             </div>
         </div >
     )

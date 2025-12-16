@@ -5,8 +5,9 @@ import { ProjectItem } from "@/components/ui/modules/project-item"
 import type { Project } from "@/components/ui/modules/project-item"
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator"
 import { SectionTitle } from "@/components/ui/modules/section-title";
+import type { SectionProps } from "@/types/section-props"
 
-export function FeaturedProjectsSection() {
+export function FeaturedProjectsSection(props: SectionProps) {
     const { t, i18n } = useTranslation();
     const [projects, setProjects] = useState<Project[]>([]);
 
@@ -54,7 +55,7 @@ export function FeaturedProjectsSection() {
             </div>
 
             <div id="featured-projects-section-scroll-indicator" className="flex items-center justify-center py-8 mt-auto shrink-0">
-                <SectionScrollDownIndicator enabled={true} nextSectionId="certifications" />
+                <SectionScrollDownIndicator enabled={true} nextSectionId={props.nextSectionId} />
             </div>
         </div>
     )
