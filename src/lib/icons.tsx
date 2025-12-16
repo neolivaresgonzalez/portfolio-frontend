@@ -20,6 +20,7 @@ import { MondayIcon } from "@/components/ui/icons/monday";
 import { WrikeIcon } from "@/components/ui/icons/wrike";
 import { JiraIcon } from "@/components/ui/icons/jira";
 import { ConfluenceIcon } from "@/components/ui/icons/confluence";
+import { LogoIcon } from "@/components/ui/icons/logo";
 
 // Map skill names to tech-stack-icons names
 // See https://tech-stack-icons.vercel.app/ for list
@@ -76,6 +77,7 @@ export const getLucideIcon = (name: string) => {
     const normalized = name.toLowerCase();
     console.log(normalized);
 
+    if (normalized.includes("logo")) return LogoIcon;
     if (normalized.includes("strapi")) return StrapiIcon;
     if (normalized.includes("monday")) return MondayIcon;
     if (normalized.includes("linkedin")) return LinkedInIcon;

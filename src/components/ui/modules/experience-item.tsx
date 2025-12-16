@@ -26,7 +26,7 @@ export function ExperienceItem(props: ExperienceItemProps) {
                 </p>
             </div>
             <div className="flex flex-col w-full md:flex-row items-center justify-center gap-2 m-2 p-2">
-                <div className="h-full w-full flex items-center justify-end">
+                <div className="h-full w-full flex items-center justify-center">
                     <a href={props.website} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
                         <SpecialIcon name={props.at} className="w-auto size-20 md:size-30 justify-center items-center flex bg-background/80 backdrop-blur-sm shadow-md hover:bg-background border border-border pointer-events-auto hover:scale-110 transition-all duration-200" />
                     </a>
