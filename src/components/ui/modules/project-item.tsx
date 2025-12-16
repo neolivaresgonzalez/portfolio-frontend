@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/shadcn-ui/button";
 import { Badge } from "@/components/ui/shadcn-ui/badge";
 import { Link } from "react-router-dom";
 import { getStrapiMedia } from "@/lib/strapi";
+import { SpecialIcon } from "@/lib/icons";
 
 export interface Project {
     id: number;
@@ -75,8 +76,10 @@ export function ProjectItem({ project, className }: ProjectItemProps) {
                 {project.Stack && project.Stack.length > 0 && (
                     <div className="flex flex-wrap gap-2">
                         {project.Stack.slice(0, 3).map((tag) => (
-                            <Badge key={tag.slug} variant="secondary">
-                                {tag.name}
+                            <Badge key={tag.slug} variant="secondary" className="flex items-center gap-2">
+                                <SpecialIcon name={tag.name} className="h-4 w-4" />
+                                <p className="text-xs">{tag.name}</p>
+
                             </Badge>
                         ))}
                     </div>

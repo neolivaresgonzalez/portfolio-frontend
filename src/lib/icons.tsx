@@ -11,11 +11,13 @@ import {
     Workflow,
     Palette,
     Mail,
-    Phone,
-    LinkedinIcon,
-    GithubIcon
+    Phone
 } from "lucide-react";
 import { UcIcon, KimnItIcon, UsachIcon } from "@/components/ui/icons/company-logos-icons";
+import { StrapiIcon } from "@/components/ui/icons/strapi";
+import { LinkedinIcon } from "@/components/ui/icons/linkedin";
+import { GithubIcon } from "@/components/ui/icons/github";
+import { MondayIcon } from "@/components/ui/icons/monday";
 
 // Map skill names to tech-stack-icons names
 // See https://tech-stack-icons.vercel.app/ for list
@@ -41,9 +43,7 @@ export const getStackIconName = (name: string): string | null => {
     if (normalized.includes("azure")) return "azure";
     if (normalized.includes("vercel")) return "vercel";
     if (normalized.includes("digitalocean")) return "digitalocean";
-    if (normalized.includes("github")) return "github";
-    if (normalized.includes("gitlab")) return "gitlab";
-    if (normalized.includes("git")) return "git";
+    if (normalized.includes("git") && !(normalized.includes("hub") || normalized.includes("lab"))) return "git";
     if (normalized.includes("docker")) return "docker";
     if (normalized.includes("linux")) return "linux";
     if (normalized.includes("figma")) return "figma";
@@ -71,7 +71,13 @@ export const getStackIconName = (name: string): string | null => {
 // Fallback: Map skill names to Lucide icons if tech-stack-icons misses them
 export const getLucideIcon = (name: string) => {
     const normalized = name.toLowerCase();
+    console.log(normalized);
 
+    if (normalized.includes("linkedin")) return LinkedinIcon;
+    if (normalized.includes("github")) return GithubIcon;
+    if (normalized.includes("strapi")) return StrapiIcon;
+    if (normalized.includes("monday")) return MondayIcon;
+    if (normalized.includes("phone")) return Phone;
     if (normalized.includes("api")) return Globe;
     if (normalized.includes("database") || normalized.includes("sql")) return Database;
     if (normalized.includes("server") || normalized.includes("backend")) return Server;
@@ -83,9 +89,6 @@ export const getLucideIcon = (name: string) => {
     if (normalized.includes("programación")) return Code2Icon;
     if (normalized.includes("data")) return Blocks;
     if (normalized.includes("email")) return Mail;
-    if (normalized.includes("phone")) return Phone;
-    if (normalized.includes("linkedin")) return LinkedinIcon;
-    if (normalized.includes("github")) return GithubIcon;
     return null;
 };
 

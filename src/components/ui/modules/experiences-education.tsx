@@ -39,11 +39,11 @@ const experiences: ExperienceItemProps[] = [
 export function ExperiencesEducation() {
     return (
         <Card id="experiences-education-container" className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
-            <CardTitle>
+            {/* <CardTitle>
                 <h2 id="experiences-education-title" className="text-base md:text-lg font-bold text-center">
                     Employment & Education
                 </h2>
-            </CardTitle>
+            </CardTitle> */}
             <CardContent className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
                 {experiences.map((experience, index) => (
                     <ExperienceItem key={index} {...experience} />

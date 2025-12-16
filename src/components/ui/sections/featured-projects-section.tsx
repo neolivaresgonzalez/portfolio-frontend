@@ -43,7 +43,7 @@ export function FeaturedProjectsSection(props: SectionProps) {
                 <SectionTitle title={t('featured_projects', 'Featured projects')} subtitle={t('browse_featured', 'Browse my featured projects')} />
             </div>
             <div id="featured-projects-section-content-container" className="flex flex-1 flex-col gap-5 min-h-0">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+                <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr">
                     {projects.map((project) => (
                         <ProjectItem
                             key={project.id}

@@ -5,6 +5,7 @@ import { SparklesIcon } from "@/components/ui/icons/sparkles"
 import { AtSignIcon } from "@/components/ui/icons/at-sign"
 import { BlocksIcon } from "@/components/ui/icons/blocks"
 import { SearchIcon } from "@/components/ui/icons/search"
+import { ClockIcon } from "@/components/ui/icons/clock"
 // import { CoffeeIcon } from "@/components/ui/icons/coffee"
 // import { RocketIcon } from "@/components/ui/icons/rocket"
 // import { HeartIcon } from "@/components/ui/icons/heart"
@@ -41,6 +42,11 @@ export const homeItems: MenuItem[] = [
         title: "About",
         url: "/#about",
         icon: UserIcon,
+    },
+    {
+        title: "Experience",
+        url: "/#experience",
+        icon: ClockIcon,
     },
     {
         title: "Skills",
