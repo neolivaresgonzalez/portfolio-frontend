@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/shadcn-ui/badge'
 import ReactMarkdown from 'react-markdown'
 import { Button } from "@/components/ui/shadcn-ui/button"
 import { ExternalLink, Github, ChevronLeft } from "lucide-react"
+import { SpecialIcon } from "@/lib/icons"
 
 export function ProjectDetailPage() {
     const { slug } = useParams();
@@ -89,7 +90,10 @@ export function ProjectDetailPage() {
                         <h2 className="text-2xl font-semibold">Stack</h2>
                         <div className="flex flex-wrap gap-2">
                             {project.Stack?.map(tech => (
-                                <Badge key={tech.slug} variant="outline">{tech.name}</Badge>
+                                <Badge key={tech.slug} variant="secondary" className="flex items-center gap-2">
+                                    <SpecialIcon name={tech.name} className="size-6" />
+                                    <p className="text-sm">{tech.name}</p>
+                                </Badge>
                             ))}
                         </div>
                     </div>
@@ -105,7 +109,11 @@ export function ProjectDetailPage() {
                         <div className="space-y-4">
                             <h2 className="text-2xl font-semibold">Highlights</h2>
                             <div className="prose dark:prose-invert">
-                                <ReactMarkdown>{project.highlights}</ReactMarkdown>
+                                <ReactMarkdown>
+                                    - Definición de arquitectura de contenidos y schemas de Strapi para el MVP
+                                    - Plan de integración con monday.com CRM para captura y ciclo de vida de leads
+                                    - Alineamiento del flujo entre contenido, CRM y operación
+                                </ReactMarkdown>
                             </div>
                         </div>
                     )}

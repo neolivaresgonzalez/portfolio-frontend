@@ -6,6 +6,7 @@ import type { Project } from "@/components/ui/modules/project-item"
 import { Input } from "@/components/ui/shadcn-ui/input"
 import { Button } from "@/components/ui/shadcn-ui/button"
 import { SectionTitle } from "@/components/ui/modules/section-title"
+import { SpecialIcon } from "@/lib/icons"
 
 export function ProjectsPage() {
     const { t, i18n } = useTranslation();
@@ -84,7 +85,7 @@ export function ProjectsPage() {
 
                 <div className="flex flex-wrap gap-2">
                     <Button
-                        variant={selectedTag === null ? "default" : "outline"}
+                        variant={selectedTag === null ? "default" : "ghost"}
                         onClick={() => setSelectedTag(null)}
                         size="sm"
                     >
@@ -93,10 +94,11 @@ export function ProjectsPage() {
                     {tags.map((tag) => (
                         <Button
                             key={tag.id}
-                            variant={selectedTag === tag.slug ? "default" : "outline"}
+                            variant={selectedTag === tag.slug ? "default" : "ghost"}
                             onClick={() => setSelectedTag(tag.slug)}
                             size="sm"
                         >
+                            <SpecialIcon name={tag.name} className="size-6" />
                             {tag.name}
                         </Button>
                     ))}
