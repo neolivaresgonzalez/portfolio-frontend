@@ -14,27 +14,27 @@ i18n
     debug: true,
     fallbackLng: 'en', // Default locale in Strapi is 'en'
     supportedLngs: ['en', 'es-419', 'fr-CA'], // Match Strapi locales exactly
-    load: 'currentOnly', 
-    
+    load: 'currentOnly',
+
     interpolation: {
-      escapeValue: false, 
+      escapeValue: false,
     },
     // Map browser language codes to Strapi locales
     detection: {
-        order: ['querystring', 'navigator'],
-        lookupQuerystring: 'lng',
-        convertDetectedLanguage: (lng) => {
-            if (lng.startsWith('es')) return 'es-419';
-            if (lng.startsWith('fr')) return 'fr-CA';
-            return 'en';
-        }
+      order: ['querystring', 'navigator'],
+      lookupQuerystring: 'lng',
+      convertDetectedLanguage: (lng) => {
+        if (lng.startsWith('es')) return 'es-419';
+        if (lng.startsWith('fr')) return 'fr-CA';
+        return 'en';
+      }
     },
     resources: {
       "en": {
         translation: {
           "projects": "Projects",
           "featured_projects": "Featured Projects",
-          "browse_featured": "Browse my featured projects",
+          "browse_featured": "Browse my",
           "header": {
             "title": "Nicolás Olivares"
           }
@@ -44,7 +44,7 @@ i18n
         translation: {
           "projects": "Proyectos",
           "featured_projects": "Proyectos Destacados",
-          "browse_featured": "Explora mis proyectos destacados",
+          "browse_featured": "Explora mis",
           "header": {
             "title": "Nicolás Olivares"
           }
@@ -54,7 +54,7 @@ i18n
         translation: {
           "projects": "Projets",
           "featured_projects": "Projets en vedette",
-          "browse_featured": "Parcourez mes projets en vedette",
+          "browse_featured": "Parcourez mes",
           "header": {
             "title": "Nicolás Olivares"
           }
