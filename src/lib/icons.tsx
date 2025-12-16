@@ -9,7 +9,11 @@ import {
     Server,
     Cloud,
     Workflow,
-    Palette
+    Palette,
+    Mail,
+    Phone,
+    LinkedinIcon,
+    GithubIcon
 } from "lucide-react";
 import { UcIcon, KimnItIcon, UsachIcon } from "@/components/ui/icons/company-logos-icons";
 
@@ -37,9 +41,9 @@ export const getStackIconName = (name: string): string | null => {
     if (normalized.includes("azure")) return "azure";
     if (normalized.includes("vercel")) return "vercel";
     if (normalized.includes("digitalocean")) return "digitalocean";
-    if (normalized.includes("git")) return "git";
     if (normalized.includes("github")) return "github";
     if (normalized.includes("gitlab")) return "gitlab";
+    if (normalized.includes("git")) return "git";
     if (normalized.includes("docker")) return "docker";
     if (normalized.includes("linux")) return "linux";
     if (normalized.includes("figma")) return "figma";
@@ -78,7 +82,10 @@ export const getLucideIcon = (name: string) => {
     if (normalized.includes("frontend") || normalized.includes("web")) return Layout;
     if (normalized.includes("programación")) return Code2Icon;
     if (normalized.includes("data")) return Blocks;
-
+    if (normalized.includes("email")) return Mail;
+    if (normalized.includes("phone")) return Phone;
+    if (normalized.includes("linkedin")) return LinkedinIcon;
+    if (normalized.includes("github")) return GithubIcon;
     return null;
 };
 

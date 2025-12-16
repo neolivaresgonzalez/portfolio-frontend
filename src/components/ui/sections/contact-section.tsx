@@ -20,13 +20,13 @@ const CONTACT_CHANNELS: ContactChannelProps[] = [
     },
     {
         kind: "linkedin",
-        value: "linkedin.com/in/ne-olivaresgonzalez",
+        value: "LinkedIn Profile",
         url: "https://linkedin.com/in/ne-olivaresgonzalez",
         text: true
     },
     {
         kind: "github",
-        value: "github.com/neolivaresgonzalez",
+        value: "GitHub Profile",
         url: "https://github.com/neolivaresgonzalez",
         text: true
     }
@@ -40,10 +40,10 @@ export function ContactSection(props: SectionProps) {
             </div>
 
             <div id="contact-section-content" className="flex flex-1 flex-col justify-center items-center gap-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-full w-full min-w-0">
-                <div id="contact-section-content-contact-channels" className="flex flex-col items-center justify-center w-full max-w-4xl">
+                <div id="contact-section-content-contact-channels" className="flex flex-col items-center justify-center w-full">
                     <ContactChannels channels={CONTACT_CHANNELS} />
                 </div>
-                <div id="contact-section-content-contact-form" className="flex flex-col items-center justify-center w-full max-w-xl">
+                <div id="contact-section-content-contact-form" className="flex flex-col items-center justify-center w-full">
                     <ContactForm />
                 </div>
             </div>

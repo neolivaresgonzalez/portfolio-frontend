@@ -90,8 +90,8 @@ export function ContactForm() {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-                <Card className="w-full mx-auto align-center justify-center">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full mx-auto">
+                <Card className="">
                     <CardHeader>
                         <CardTitle className="text-3xl text-left">Contact Form</CardTitle>
                         <CardDescription className="text-justify">

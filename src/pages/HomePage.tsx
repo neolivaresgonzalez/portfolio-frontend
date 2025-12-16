@@ -5,7 +5,6 @@ import { ContactSection } from '@/components/ui/sections/contact-section'
 import { FeaturedProjectsSection } from '@/components/ui/sections/featured-projects-section'
 import { CertificationsSection } from '@/components/ui/sections/certifications-section'
 import { FooterNavbar } from '@/components/ui/modules/footer-navbar'
-import type { SectionProps } from '@/types/section-props'
 import { ExperienceSection } from '@/components/ui/sections/experience-section'
 
 
@@ -41,7 +40,7 @@ const sections: SectionList[] = [
     },
     {
         id: "contact",
-        component: <ContactSection scrollDownIndicator={true} nextSectionId="footer" />
+        component: <ContactSection scrollDownIndicator={false} nextSectionId="footer" />
     },
     {
         id: "footer",

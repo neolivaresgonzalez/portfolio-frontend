@@ -2,9 +2,8 @@ import {
     Item,
     ItemContent
 } from "@/components/ui/shadcn-ui/item";
-import { Mail, Phone } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/icons/linkedin";
-import { GithubIcon } from "@/components/ui/icons/github";
+
+import { SpecialIcon } from "@/lib/icons";
 import type { ContactChannelProps } from "@/types/contact-channel-card";
 
 export function ContactChannel(props: ContactChannelProps) {
@@ -15,25 +14,15 @@ export function ContactChannel(props: ContactChannelProps) {
             target="_blank"
             rel="noopener noreferrer"
         >
-            <Item className="items-center justify-center">
-                <ItemContent>
-                    <div>
-                        {
-                            props.kind === "email" ? (
-                                <Mail />
-                            ) : props.kind === "phone" ? (
-                                <Phone />
-                            ) : props.kind === "linkedin" ? (
-                                <LinkedinIcon />
-                            ) : props.kind === "github" ? (
-                                <GithubIcon />
-                            ) : null
-                        }
+            <Item>
+                <ItemContent className="flex flex-row items-center justify-center">
+                    <div className="flex items-center justify-center">
+                        <SpecialIcon name={props.kind} className="size-7" />
                     </div>
                     <div>
                         {
                             props.text ? (
-                                <p className="text-sm md:text-md lg:text-lg">{props.value}</p>
+                                <p className="text-xs sm:text-sm md:text-md lg:text-lg">{props.value}</p>
                             ) : null
                         }
                     </div>
