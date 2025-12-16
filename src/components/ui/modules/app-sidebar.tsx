@@ -44,14 +44,14 @@ export const homeItems: MenuItem[] = [
         icon: UserIcon,
     },
     {
-        title: "Experience",
-        url: "/#experience",
-        icon: ClockIcon,
-    },
-    {
         title: "Skills",
         url: "/#skills",
         icon: FolderCodeIcon,
+    },
+    {
+        title: "Experience",
+        url: "/#experience",
+        icon: ClockIcon,
     },
     {
         title: "Featured Projects",
