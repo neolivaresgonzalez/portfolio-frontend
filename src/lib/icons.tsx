@@ -15,9 +15,11 @@ import {
 } from "lucide-react";
 import { UcIcon, KimnItIcon, UsachIcon } from "@/components/ui/icons/company-logos-icons";
 import { StrapiIcon } from "@/components/ui/icons/strapi";
-import { LinkedinIcon } from "@/components/ui/icons/linkedin";
-import { GithubIcon } from "@/components/ui/icons/github";
+import { LinkedInIcon } from "@/components/ui/icons/linkedin";
 import { MondayIcon } from "@/components/ui/icons/monday";
+import { WrikeIcon } from "@/components/ui/icons/wrike";
+import { JiraIcon } from "@/components/ui/icons/jira";
+import { ConfluenceIcon } from "@/components/ui/icons/confluence";
 
 // Map skill names to tech-stack-icons names
 // See https://tech-stack-icons.vercel.app/ for list
@@ -44,6 +46,8 @@ export const getStackIconName = (name: string): string | null => {
     if (normalized.includes("vercel")) return "vercel";
     if (normalized.includes("digitalocean")) return "digitalocean";
     if (normalized.includes("git") && !(normalized.includes("hub") || normalized.includes("lab"))) return "git";
+    if (normalized.includes("github")) return "github";
+    if (normalized.includes("gitlab")) return "gitlab";
     if (normalized.includes("docker")) return "docker";
     if (normalized.includes("linux")) return "linux";
     if (normalized.includes("figma")) return "figma";
@@ -53,7 +57,6 @@ export const getStackIconName = (name: string): string | null => {
     if (normalized.includes("angular")) return "angular17";
     if (normalized.includes("adobe")) return "adobe";
     if (normalized.includes("atlassian")) return "atlassian";
-    if (normalized.includes("jira")) return "jira";
     if (normalized.includes("vscode")) return "vscode";
     if (normalized.includes("c#")) return "c#";
     if (normalized.includes("redis")) return "redis";
@@ -73,10 +76,12 @@ export const getLucideIcon = (name: string) => {
     const normalized = name.toLowerCase();
     console.log(normalized);
 
-    if (normalized.includes("linkedin")) return LinkedinIcon;
-    if (normalized.includes("github")) return GithubIcon;
     if (normalized.includes("strapi")) return StrapiIcon;
     if (normalized.includes("monday")) return MondayIcon;
+    if (normalized.includes("linkedin")) return LinkedInIcon;
+    if (normalized.includes("wrike")) return WrikeIcon;
+    if (normalized.includes("jira")) return JiraIcon;
+    if (normalized.includes("confluence")) return ConfluenceIcon;
     if (normalized.includes("phone")) return Phone;
     if (normalized.includes("api")) return Globe;
     if (normalized.includes("database") || normalized.includes("sql")) return Database;

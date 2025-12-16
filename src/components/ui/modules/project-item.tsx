@@ -77,8 +77,8 @@ export function ProjectItem({ project, className }: ProjectItemProps) {
                     <div className="flex flex-wrap gap-2">
                         {project.Stack.slice(0, 3).map((tag) => (
                             <Badge key={tag.slug} variant="secondary" className="flex items-center gap-2">
-                                <SpecialIcon name={tag.name} className="h-4 w-4" />
-                                <p className="text-xs">{tag.name}</p>
+                                <SpecialIcon name={tag.name} className="size-6" />
+                                <p className="text-xs md:text-sm">{tag.name}</p>
 
                             </Badge>
                         ))}

@@ -34,7 +34,7 @@ const CONTACT_CHANNELS: ContactChannelProps[] = [
 export function Hero() {
 
     return (
-        <div className="flex flex-col sm:flex-row w-full max-w-full justify-evenly items-center gap-4">
+        <div className="flex flex-col sm:flex-row w-full max-w-full justify-evenly items-center gap-4 p-4">
             <div id="hero-section-content-profile-picture" className="flex items-center justify-center sm:w-1/2">
                 <img src={profilePicture} className="w-full max-w-3xs h-auto aspect-square rounded-full" alt="handsome guy with Toronto skyline in the background" />
             </div>

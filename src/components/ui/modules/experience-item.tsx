@@ -1,9 +1,3 @@
-import {
-    Card,
-    CardContent,
-    CardTitle,
-} from "@/components/ui/shadcn-ui/card"
-
 import { GraduationCapIcon, BriefcaseIcon } from "lucide-react"
 import { SpecialIcon } from "@/lib/icons"
 
@@ -31,25 +25,24 @@ export function ExperienceItem(props: ExperienceItemProps) {
                     {props.kind}
                 </p>
             </div>
-            <div className="flex flex-col flex-1 md:flex-row items-center justify-between gap-1 m-3 p-3 text-left">
-                <div className="h-full flex items-center justify-center">
-                    <a href={props.website} target="_blank" rel="noopener noreferrer" className="hover:underline cursor-pointer">
-                        <SpecialIcon name={props.at} className="w-auto size-30 justify-center items-center flex" />
+            <div className="flex flex-col w-full md:flex-row items-center justify-center gap-2 m-2 p-2">
+                <div className="h-full w-full flex items-center justify-end">
+                    <a href={props.website} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
+                        <SpecialIcon name={props.at} className="w-auto size-20 md:size-30 justify-center items-center flex bg-background/80 backdrop-blur-sm shadow-md hover:bg-background border border-border pointer-events-auto hover:scale-110 transition-all duration-200" />
                     </a>
                 </div>
-                <div className="w-full h-full flex flex-col items-center justify-center gap-1">
-                    <p className="text-base font-semibold text-foreground">{props.title}</p>
-                    <p className="text-sm font-medium">{props.subtitle}</p>
+                <div className="w-full h-full flex flex-col items-center justify-center gap-2 m-2 p-2">
+                    <p className="text-sm md:text-md font-bold text-foreground">{props.title}</p>
+                    <p className="text-sm md:text-md font-medium">{props.subtitle}</p>
                 </div>
-                <div className="w-full h-full flex flex-col items-center justify-center gap-1">
-                    {props.location && <p className="text-xs text-muted-foreground">{props.location}</p>}
-                    {props.startDate && <p className="text-xs text-muted-foreground">{props.startDate} - {props.endDate}</p>}
-                    {props.website && <p className="text-xs"></p>}
+                <div className="w-full h-full flex flex-col items-center justify-center gap-2 m-2 p-2">
+                    {props.location && <p className="text-sm md:text-md text-right leading-relaxed whitespace-normal break-words text-muted-foreground">{props.location}</p>}
+                    {props.startDate && <p className="text-sm md:text-md text-right leading-relaxed whitespace-normal break-words text-muted-foreground">{props.startDate} - {props.endDate}</p>}
                 </div>
 
                 {props.gpa || props.description || props.achievements && (
-                    <div className="w-full h-full flex flex-col items-center justify-center gap-1">
-                        {props.gpa && <p className="text-xs">GPA: {props.gpa}</p>}
+                    <div className="w-full h-full flex flex-col items-center justify-center gap-2 m-2 p-2">
+                        {props.gpa && <p className="text-sm text-justify md:text-center leading-relaxed whitespace-normal break-words">GPA: {props.gpa}</p>}
                         {props.description && <p className="text-sm text-justify md:text-center leading-relaxed whitespace-normal break-words">{props.description}</p>}
                         {props.achievements && <p className="text-sm text-justify md:text-center leading-relaxed whitespace-normal break-words">{props.achievements}</p>}
                     </div>

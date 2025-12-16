@@ -1,12 +1,13 @@
 import { ExperienceItem } from "@/components/ui/modules/experience-item";
 import type { ExperienceItemProps } from "@/components/ui/modules/experience-item";
 import { Card, CardContent, CardTitle } from "@/components/ui/shadcn-ui/card";
+import { Separator } from "../shadcn-ui/separator";
 
 const experiences: ExperienceItemProps[] = [
     {
         kind: "Employment",
         title: "IT Project Manager",
-        subtitle: "Technical leadership",
+        subtitle: "Technical leadership | Project Management",
         at: "PUC - Pontifical Catholic University",
         location: "Santiago, Chile",
         website: "https://www.uc.cl",
@@ -16,7 +17,7 @@ const experiences: ExperienceItemProps[] = [
     {
         kind: "Employment",
         title: "Project Engineer",
-        subtitle: "Software Engineer",
+        subtitle: "Software Engineer | Software & Hardware Integration",
         at: "Kimn-IT",
         location: "Santiago, Chile",
         website: "https://www.kimn-it.cl",
@@ -26,7 +27,7 @@ const experiences: ExperienceItemProps[] = [
     {
         kind: "Education",
         title: "Bachelors of Science in Engineering",
-        subtitle: "Fields: Software Engineering & Data Science",
+        subtitle: "Software Engineering & Data Science",
         at: "USACH - University of Santiago",
         location: "Santiago, Chile",
         website: "https://www.usach.cl",
@@ -46,7 +47,10 @@ export function ExperiencesEducation() {
             </CardTitle> */}
             <CardContent className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
                 {experiences.map((experience, index) => (
-                    <ExperienceItem key={index} {...experience} />
+                    <>
+                        <ExperienceItem key={index} {...experience} />
+                        <Separator orientation="horizontal" className="w-full" />
+                    </>
                 ))}
             </CardContent>
         </Card>

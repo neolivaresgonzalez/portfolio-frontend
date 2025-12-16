@@ -1,7 +1,10 @@
 'use client';
 
+// Based on https://monday.com/p/news/press-kit/
+// Based on lucid-animated Icons
+
 import type { HTMLAttributes } from 'react';
-import monday from '@/assets/logos/monday.svg';
+import logo from '@/assets/logos/monday.svg';
 
 import { cn } from '@/lib/utils';
 
@@ -17,7 +20,7 @@ const MondayIcon = ({ className, size = 28, ...props }: MondayIconProps) => {
             className={cn(className)}
             {...props}
         >
-            <img src={monday} alt="Monday" />
+            <img src={logo} alt="Monday" />
         </div>
     );
 }
