@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
 
 import { Button } from "@/components/ui/shadcn-ui/button"
 import {
@@ -18,6 +19,7 @@ import { Input } from "@/components/ui/shadcn-ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/shadcn-ui/select"
 import { Textarea } from "@/components/ui/shadcn-ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/shadcn-ui/card"
+import { useCallback } from "react"
 
 const NOTES_MAX_LENGTH = 500
 const NOTES_MIN_LENGTH = 20
@@ -56,9 +58,13 @@ const formSchema = z.object({
     optIn: z
         .boolean()
         .optional(),
+    age: z
+        .string()
+        .optional(),
 })
 
 export function ContactForm() {
+    const { executeRecaptcha } = useGoogleReCaptcha()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -71,21 +77,42 @@ export function ContactForm() {
             other: "",
             notes: "",
             optIn: false,
+            age: "",
         },
     })
+
+    function checkHoneypot() {
+        return form.getValues("age") !== ""
+    }
 
     function onClear() {
         form.reset()
 
+
     }
 
-    function onSubmit(data: z.infer<typeof formSchema>) {
+    const onSubmit = useCallback(async (data: z.infer<typeof formSchema>) => {
+        if (checkHoneypot()) {
+            console.log("Honeypot detected")
+            return
+        }
+
+        if (!executeRecaptcha) {
+            console.log("Execute recaptcha not yet available")
+            return
+        }
+
         if (!form.formState.isValid) {
             console.error("Form is not valid")
+            return
         }
+
+        const token = await executeRecaptcha("contact_form")
+        console.log("ReCaptcha Token:", token)
+
         // Do something with the form values.
         console.log(data)
-    }
+    }, [executeRecaptcha, form.formState.isValid])
 
 
     return (
@@ -215,10 +242,30 @@ export function ContactForm() {
                                     </FormItem>
                                 )}
                             />
+                            <div hidden>
+                                <FormField
+                                    control={form.control}
+                                    name="age"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Age</FormLabel>
+                                            <FormDescription>
+                                                This will help me to understand your needs.
+                                            </FormDescription>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-between">
-                        <Button type="submit">Submit</Button>
+                        <Button type="submit" disabled={form.formState.isSubmitting}>
+                            Submit
+                        </Button>
                         <Button variant="outline" onClick={onClear}>Reset</Button>
                     </CardFooter>
                 </Card>

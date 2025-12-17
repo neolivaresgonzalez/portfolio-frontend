@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/shadcn-ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useCallback } from "react";
 
 const FIRST_NAME_MIN_LENGTH = 2
 const FIRST_NAME_MAX_LENGTH = 50
@@ -21,10 +23,16 @@ const formSchema = z.object({
         .min(LAST_NAME_MIN_LENGTH, "Last name must be at least " + LAST_NAME_MIN_LENGTH + " characters.")
         .max(LAST_NAME_MAX_LENGTH, "Last name must be at most " + LAST_NAME_MAX_LENGTH + " characters."),
     email: z
-        .email("Invalid email address.")
+        .email("Invalid email address."),
+    age: z
+        .string()
+        .optional(),
 })
 
+
+
 export function DownloadResumeForm() {
+    const { executeRecaptcha } = useGoogleReCaptcha()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -34,18 +42,37 @@ export function DownloadResumeForm() {
         },
     })
 
+    function checkHoneypot() {
+        return form.getValues("age") !== ""
+    }
+
     function onClear() {
         form.reset()
 
     }
 
-    function onSubmit(data: z.infer<typeof formSchema>) {
+    const onSubmit = useCallback(async (data: z.infer<typeof formSchema>) => {
+        if (checkHoneypot()) {
+            console.log("Honeypot detected")
+            return
+        }
+
+        if (!executeRecaptcha) {
+            console.log("Execute recaptcha not yet available")
+            return
+        }
+
         if (!form.formState.isValid) {
             console.error("Form is not valid")
+            return
         }
+
+        const token = await executeRecaptcha("download_resume")
+        console.log("ReCaptcha Token:", token)
+
         // Do something with the form values.
         console.log(data)
-    }
+    }, [executeRecaptcha, form.formState.isValid])
 
     return (
         <Form {...form}>
@@ -107,14 +134,28 @@ export function DownloadResumeForm() {
                         </FormItem>
                     )}
                 />
-                {/* </CardContent> */}
-                {/* <CardFooter className="flex justify-between"> */}
+                <div hidden>
+                    <FormField
+                        control={form.control}
+                        name="age"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Age</FormLabel>
+                                <FormDescription>
+                                    This will help me to understand your needs.
+                                </FormDescription>
+                                <FormControl>
+                                    <Input {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
                 <div className="flex justify-between">
                     <Button type="submit">Download</Button>
                     <Button variant="outline" onClick={onClear}>Reset</Button>
                 </div>
-                {/* </CardFooter> */}
-                {/* </Card> */}
             </form>
         </Form>
     )
