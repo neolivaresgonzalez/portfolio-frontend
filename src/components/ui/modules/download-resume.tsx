@@ -1,5 +1,5 @@
+import { useState } from "react"
 import { Button } from "@/components/ui/shadcn-ui/button"
-import type { DownloadResumeModuleProps } from "@/types/download-resume"
 import {
     ResponsiveModal,
     ResponsiveModalContent,
@@ -8,15 +8,22 @@ import {
 } from "@/components/ui/modules/responsive-modal"
 import { DownloadResumeForm } from "@/components/ui/forms/download-resume-form"
 
+interface DownloadResumeModuleProps {
+    side: "left" | "right" | "bottom" | "top"
+}
+
+
 export function DownloadResumeModule(props: DownloadResumeModuleProps) {
+    const [open, setOpen] = useState(false)
+
     return (
-        <ResponsiveModal>
+        <ResponsiveModal open={open} onOpenChange={setOpen}>
             <ResponsiveModalTrigger asChild>
                 <Button>Download Resume</Button>
             </ResponsiveModalTrigger>
             <ResponsiveModalContent side={props.side}>
                 <ResponsiveModalHeader>
-                    <DownloadResumeForm />
+                    <DownloadResumeForm onSuccess={() => setOpen(false)} />
                 </ResponsiveModalHeader>
             </ResponsiveModalContent>
         </ResponsiveModal>

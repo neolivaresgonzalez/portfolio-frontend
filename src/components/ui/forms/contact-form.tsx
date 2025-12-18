@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3"
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/shadcn-ui/button"
 import {
@@ -20,14 +21,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/shadcn-ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/shadcn-ui/card"
 import { useCallback } from "react"
+import {
+    NOTES_MAX_LENGTH,
+    NOTES_MIN_LENGTH,
+    FIRST_NAME_MAX_LENGTH,
+    FIRST_NAME_MIN_LENGTH,
+    LAST_NAME_MAX_LENGTH,
+    LAST_NAME_MIN_LENGTH,
+    WHO_ARE_YOU_VALUES
+} from "@/components/ui/forms/forms"
 
-const NOTES_MAX_LENGTH = 500
-const NOTES_MIN_LENGTH = 20
-const FIRST_NAME_MAX_LENGTH = 100
-const FIRST_NAME_MIN_LENGTH = 2
-const LAST_NAME_MAX_LENGTH = 100
-const LAST_NAME_MIN_LENGTH = 2
-const LIST_OF_WHO_ARE_YOU = ["Recruiter", "Hiring Manager", "Volunteer Opportunity", "Let's collaborate"]
 
 const formSchema = z.object({
     salutation: z
@@ -47,7 +50,7 @@ const formSchema = z.object({
         .string()
         .optional(),
     whoAreYou: z
-        .enum(LIST_OF_WHO_ARE_YOU),
+        .enum(WHO_ARE_YOU_VALUES.map((whoAreYou) => whoAreYou.value)),
     other: z
         .string()
         .optional(),
@@ -73,7 +76,7 @@ export function ContactForm() {
             lastName: "",
             email: "",
             phone: "",
-            whoAreYou: LIST_OF_WHO_ARE_YOU[0],
+            whoAreYou: WHO_ARE_YOU_VALUES[0].value,
             other: "",
             notes: "",
             optIn: false,
@@ -107,11 +110,41 @@ export function ContactForm() {
             return
         }
 
-        const token = await executeRecaptcha("contact_form")
-        console.log("ReCaptcha Token:", token)
+        try {
+            const token = await executeRecaptcha("contact_form")
+            console.log("ReCaptcha Token:", token)
 
-        // Do something with the form values.
-        console.log(data)
+            const apiUrl = import.meta.env.VITE_FORM_API_URL
+            if (!apiUrl) {
+                console.error("VITE_FORM_API_URL is not set")
+                return
+            }
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    token,
+                    formData: data,
+                    formType: "contact"
+                }),
+            })
+
+            const result = await response.json()
+            if (response.ok) {
+                console.log("Form submitted successfully:", result)
+                toast.success("Message sent successfully!")
+                onClear()
+            } else {
+                console.error("Form submission failed:", result)
+                toast.error("Failed to send message. Please try again.")
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error)
+            toast.error("An error occurred. Please try again later.")
+        }
     }, [executeRecaptcha, form.formState.isValid])
 
 
@@ -202,17 +235,17 @@ export function ContactForm() {
                                     </FormDescription>
                                     <FormControl>
                                         {/* <Input placeholder="Please insert your who are you" {...field} /> */}
-                                        <Select onValueChange={field.onChange} defaultValue={LIST_OF_WHO_ARE_YOU[3]}>
+                                        <Select onValueChange={field.onChange}>
                                             <SelectTrigger>
                                                 <SelectValue >
-                                                    {field.value}
+                                                    {WHO_ARE_YOU_VALUES.find((whoAreYou) => whoAreYou.value === field.value)?.label}
                                                 </SelectValue>
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {
-                                                    LIST_OF_WHO_ARE_YOU.map((whoAreYou, index) => (
-                                                        <div key={index}>
-                                                            <SelectItem value={whoAreYou}>{whoAreYou}</SelectItem>
+                                                    WHO_ARE_YOU_VALUES.map((whoAreYou) => (
+                                                        <div key={whoAreYou.value}>
+                                                            <SelectItem value={whoAreYou.value}>{whoAreYou.label}</SelectItem>
                                                         </div>
                                                     ))
                                                 }

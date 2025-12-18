@@ -4,6 +4,7 @@ import type { ContactChannelProps } from "@/types/contact-channel-card"
 import { ContactChannel } from "@/components/ui/modules/contact-channel"
 import { DownloadResumeModule } from "@/components/ui/modules/download-resume"
 import { SpecialIcon } from "@/lib/icons"
+import { HashLink } from "react-router-hash-link"
 
 const CONTACT_CHANNELS: ContactChannelProps[] = [
     {
@@ -50,7 +51,7 @@ export function Hero() {
                 </div>
                 <div id="hero-section-main-info-buttons" className="flex w-full flex-col sm:flex-row items-center justify-center gap-4">
                     <DownloadResumeModule side="left" />
-                    <Button variant="default" onClick={() => window.scrollTo({ top: document.getElementById("contact")?.offsetTop || 0, behavior: "smooth" })} className="">Contact Me</Button>
+                    <HashLink to="/#contact" smooth><Button variant="default" className="">Contact Me</Button></HashLink>
                 </div>
                 <div id="hero-section-main-info-socials" className="flex w-full flex-row flex-wrap items-center justify-center gap-1">
                     {

@@ -75,7 +75,6 @@ export const getStackIconName = (name: string): string | null => {
 // Fallback: Map skill names to Lucide icons if tech-stack-icons misses them
 export const getLucideIcon = (name: string) => {
     const normalized = name.toLowerCase();
-    console.log(normalized);
 
     if (normalized.includes("logo")) return LogoIcon;
     if (normalized.includes("strapi")) return StrapiIcon;

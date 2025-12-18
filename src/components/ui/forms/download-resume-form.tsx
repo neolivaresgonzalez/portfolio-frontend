@@ -7,11 +7,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { useCallback } from "react";
+import { toast } from "sonner"
+import downloadResume from "@/assets/resume.pdf";
+import {
+    FIRST_NAME_MAX_LENGTH,
+    FIRST_NAME_MIN_LENGTH,
+    LAST_NAME_MAX_LENGTH,
+    LAST_NAME_MIN_LENGTH,
+} from "@/components/ui/forms/forms"
 
-const FIRST_NAME_MIN_LENGTH = 2
-const FIRST_NAME_MAX_LENGTH = 50
-const LAST_NAME_MIN_LENGTH = 2
-const LAST_NAME_MAX_LENGTH = 50
+interface DownloadResumeFormProps {
+    onSuccess?: () => void
+}
+
 
 const formSchema = z.object({
     firstName: z
@@ -31,7 +39,7 @@ const formSchema = z.object({
 
 
 
-export function DownloadResumeForm() {
+export function DownloadResumeForm({ onSuccess }: DownloadResumeFormProps) {
     const { executeRecaptcha } = useGoogleReCaptcha()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -39,11 +47,12 @@ export function DownloadResumeForm() {
             firstName: "",
             lastName: "",
             email: "",
+            age: "",
         },
     })
 
     function checkHoneypot() {
-        return form.getValues("age") !== ""
+        return form.getValues("age") !== undefined && form.getValues("age") !== ""
     }
 
     function onClear() {
@@ -67,12 +76,55 @@ export function DownloadResumeForm() {
             return
         }
 
-        const token = await executeRecaptcha("download_resume")
-        console.log("ReCaptcha Token:", token)
+        try {
+            const token = await executeRecaptcha("download_resume")
+            console.log("ReCaptcha Token:", token)
+            console.log("Form data:", data)
 
-        // Do something with the form values.
-        console.log(data)
-    }, [executeRecaptcha, form.formState.isValid])
+            const apiUrl = import.meta.env.VITE_FORM_API_URL
+            if (!apiUrl) {
+                console.error("VITE_FORM_API_URL is not set")
+                return
+            }
+
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    token,
+                    formData: data,
+                    formType: "download_resume"
+                }),
+            })
+
+            const result = await response.json()
+            if (response.ok) {
+                console.log("Resume request logged successfully:", result)
+                toast.success("Resume request submitted successfully! Downloading now...")
+
+                // Trigger download
+                // Using a hidden link to ensure download behavior where possible, or window.open
+                const link = document.createElement('a');
+                link.href = downloadResume;
+                link.download = "resume.pdf"; // specific name
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                if (onSuccess) {
+                    onSuccess()
+                }
+            } else {
+                console.error("Form submission failed:", result)
+                toast.error("Failed to submit request. Please try again.")
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error)
+            toast.error("An error occurred. Please try again later.")
+        }
+    }, [executeRecaptcha, form.formState.isValid, onSuccess])
 
     return (
         <Form {...form}>
