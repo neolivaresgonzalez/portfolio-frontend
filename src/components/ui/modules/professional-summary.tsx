@@ -1,12 +1,17 @@
-export function ProfessionalSummary() {
+import ReactMarkdown from 'react-markdown';
+
+interface ProfessionalSummaryProps {
+    content?: string;
+}
+
+export function ProfessionalSummary({ content }: ProfessionalSummaryProps) {
+    if (!content) return null;
+
     return (
         <div className="flex flex-col items-center justify-center w-full px-4">
-            <p className="text-sm md:text-md lg:text-lg text-justify leading-relaxed">
-                Hi, I'm Nicolás Olivares, a software engineer with a
-                passion for creating innovative and user-friendly applications.
-                With a strong foundation in programming and a commitment to continuous learning,
-                I strive to deliver high-quality solutions that meet the needs of both users and businesses.
-            </p>
+            <div className="text-sm md:text-md lg:text-lg text-justify leading-relaxed prose dark:prose-invert max-w-none">
+                <ReactMarkdown>{content}</ReactMarkdown>
+            </div>
         </div>
     )
 }

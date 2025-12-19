@@ -1,18 +1,78 @@
+import { useEffect, useState } from "react";
 import { SkillsGroup } from "@/components/ui/modules/skills-group";
 import { SectionScrollDownIndicator } from "@/components/ui/icons/section-scroll-down-indicator";
 import { SectionTitle } from "@/components/ui/modules/section-title";
 import { Carousel } from "@/components/ui/modules/carousel";
 import type { SectionProps } from "@/types/section-props"
+import { fetchAPI } from "@/lib/strapi";
+
+interface Skill {
+    id: number;
+    documentId: string;
+    name: string;
+    slug: string;
+    type: 'language' | 'framework' | 'library' | 'service' | 'infra' | 'tool' | 'soft-skill' | 'database';
+    icon: {
+        url: string;
+    } | null
+}
+
+const TYPE_TITLE_MAP: Record<string, string> = {
+    'language': 'Languages',
+    'framework': 'Frameworks',
+    'library': 'Libraries',
+    'service': 'Services',
+    'infra': 'Infrastructure',
+    'tool': 'Tools',
+    'soft-skill': 'Soft Skills',
+    'database': 'Databases'
+};
+
+const ORDERED_TYPES = ['language', 'framework', 'database', 'tool', 'infra', 'soft-skill'];
 
 export function SkillsSection(props: SectionProps) {
-    const skillsGroups = [
-        { title: "Languages", skills: ["TypeScript", "JavaScript", "HTML5", "CSS3", "Python", "SQL"] },
-        { title: "Frameworks", skills: ["React", "Next.js", "Tailwind CSS", "Node.js", "Express"] },
-        { title: "Tools", skills: ["Git", "GitHub", "VS Code", "Postman", "Figma", "Docker"] },
-        { title: "Databases", skills: ["PostgreSQL", "MongoDB", "MySQL", "Redis"] },
-        { title: "Cloud Platforms", skills: ["AWS", "Vercel", "DigitalOcean"] },
-        { title: "DevOps", skills: ["CI/CD", "GitHub Actions", "Caddy", "Linux"] },
-    ];
+    const [skillsGroups, setSkillsGroups] = useState<{ title: string, skills: string[] }[]>([]);
+
+    useEffect(() => {
+        const loadSkills = async () => {
+            try {
+                const res = await fetchAPI('/skills', {
+                    populate: ['icon'],
+                    pagination: {
+                        limit: 100 // Get all skills
+                    }
+                });
+
+                if (res.data) {
+                    const grouped: Record<string, string[]> = {};
+
+                    res.data.forEach((item: Skill) => {
+                        const type = item.type;
+                        if (!grouped[type]) {
+                            grouped[type] = [];
+                        }
+                        grouped[type].push(item.name);
+                    });
+
+                    // Transform to array with specific order
+                    const groups = ORDERED_TYPES
+                        .filter(type => grouped[type] && grouped[type].length > 0)
+                        .map(type => ({
+                            title: TYPE_TITLE_MAP[type] || type,
+                            skills: grouped[type]
+                        }));
+
+                    setSkillsGroups(groups);
+                }
+            } catch (error) {
+                console.error("Failed to load skills", error);
+            }
+        };
+
+        loadSkills();
+    }, []);
+
+    if (skillsGroups.length === 0) return null;
 
     return (
         <div id="skills-section" className="flex flex-col min-h-0 py-8 lg:py-16 w-full max-w-[100vw] overflow-x-hidden">

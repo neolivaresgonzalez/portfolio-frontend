@@ -1,56 +1,70 @@
+import { useEffect, useState } from "react";
 import { ExperienceItem } from "@/components/ui/modules/experience-item";
 import type { ExperienceItemProps } from "@/components/ui/modules/experience-item";
-import { Card, CardContent, CardTitle } from "@/components/ui/shadcn-ui/card";
+import { Card, CardContent } from "@/components/ui/shadcn-ui/card";
 import { Separator } from "../shadcn-ui/separator";
+import { fetchAPI } from "@/lib/strapi";
 
-const experiences: ExperienceItemProps[] = [
-    {
-        kind: "Employment",
-        title: "IT Project Manager",
-        subtitle: "Technical leadership | Project Management",
-        at: "PUC - Pontifical Catholic University",
-        location: "Santiago, Chile",
-        website: "https://www.uc.cl",
-        startDate: "2022",
-        endDate: "2025"
-    },
-    {
-        kind: "Employment",
-        title: "Project Engineer",
-        subtitle: "Software Engineer | Software & Hardware Integration",
-        at: "Kimn-IT",
-        location: "Santiago, Chile",
-        website: "https://www.kimn-it.cl",
-        startDate: "2020",
-        endDate: "2022"
-    },
-    {
-        kind: "Education",
-        title: "Bachelors of Science in Engineering",
-        subtitle: "Software Engineering & Data Science",
-        at: "USACH - University of Santiago",
-        location: "Santiago, Chile",
-        website: "https://www.usach.cl",
-        startDate: "2013",
-        endDate: "2021"
-    }
-]
-
+interface ExperienceData {
+    id: number;
+    documentId: string;
+    type: "Employment" | "Education";
+    title: string;
+    subtitle?: string;
+    organization: string;
+    location?: string;
+    startDate?: string;
+    endDate?: string;
+    website?: string;
+    description?: string;
+    order: number;
+}
 
 export function ExperiencesEducation() {
+    const [experiences, setExperiences] = useState<ExperienceItemProps[]>([]);
+
+    useEffect(() => {
+        const loadExperiences = async () => {
+            try {
+                const res = await fetchAPI('/experiences', {
+                    sort: ['order:asc', 'startDate:desc'],
+                    pagination: {
+                        limit: 100
+                    }
+                });
+
+                if (res.data) {
+                    const mappedExperiences: ExperienceItemProps[] = res.data.map((item: ExperienceData) => ({
+                        kind: item.type,
+                        title: item.title,
+                        subtitle: item.subtitle || item.organization, // Use organization as subtitle if subtitle is missing
+                        at: item.organization,
+                        location: item.location || "",
+                        website: item.website || "",
+                        startDate: item.startDate || "",
+                        endDate: item.endDate || "Present",
+                        description: item.description
+                    }));
+                    setExperiences(mappedExperiences);
+                }
+            } catch (error) {
+                console.error("Failed to load experiences", error);
+            }
+        };
+
+        loadExperiences();
+    }, []);
+
+    if (experiences.length === 0) return null;
+
     return (
         <Card id="experiences-education-container" className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
-            {/* <CardTitle>
-                <h2 id="experiences-education-title" className="text-base md:text-lg font-bold text-center">
-                    Employment & Education
-                </h2>
-            </CardTitle> */}
             <CardContent className="flex flex-col flex-wrap w-full items-center justify-center overflow-hidden gap-4">
                 {experiences.map((experience, index) => (
-                    <>
-                        <ExperienceItem key={index} {...experience} />
-                        <Separator orientation="horizontal" className="w-full" />
-                    </>
+                    <div key={index} className="w-full flex flex-col gap-4">
+                        <ExperienceItem {...experience} />
+                        {index < experiences.length - 1 && <Separator orientation="horizontal" className="w-full" />}
+                    </div>
                 ))}
             </CardContent>
         </Card>

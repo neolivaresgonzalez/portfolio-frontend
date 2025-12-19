@@ -13,20 +13,23 @@ export function ProjectsPage() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
-    const [tags, setTags] = useState<{ id: number; name: string; slug: string }[]>([]);
+    const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+    const [skills, setSkills] = useState<{ id: number; name: string; slug: string }[]>([]);
 
     useEffect(() => {
         const loadData = async () => {
             setIsLoading(true);
             try {
-                // Fetch tags for filter
-                const tagsRes = await fetchAPI('/tags', {
-                    populate: '*',
-                    sort: ['name:asc']
+                // Fetch skills for filter
+                const skillsRes = await fetchAPI('/skills', {
+                    fields: ['name', 'slug'],
+                    sort: ['name:asc'],
+                    pagination: {
+                        limit: 100
+                    }
                 });
-                if (tagsRes.data) {
-                    setTags(tagsRes.data);
+                if (skillsRes.data) {
+                    setSkills(skillsRes.data);
                 }
 
                 // Fetch projects
@@ -36,10 +39,10 @@ export function ProjectsPage() {
                         $containsi: searchQuery
                     };
                 }
-                if (selectedTag) {
+                if (selectedSkill) {
                     filters.Stack = {
                         slug: {
-                            $eq: selectedTag
+                            $eq: selectedSkill
                         }
                     };
                 }
@@ -66,7 +69,7 @@ export function ProjectsPage() {
         }, 300); // Debounce search
 
         return () => clearTimeout(timeoutId);
-    }, [searchQuery, selectedTag, i18n.language]);
+    }, [searchQuery, selectedSkill, i18n.language]);
 
     return (
         <div className="container mx-auto py-8 px-4 min-h-[calc(100vh-4rem)] flex flex-col gap-8">
@@ -85,21 +88,21 @@ export function ProjectsPage() {
 
                 <div className="flex flex-wrap gap-2">
                     <Button
-                        variant={selectedTag === null ? "default" : "ghost"}
-                        onClick={() => setSelectedTag(null)}
+                        variant={selectedSkill === null ? "default" : "ghost"}
+                        onClick={() => setSelectedSkill(null)}
                         size="sm"
                     >
                         All
                     </Button>
-                    {tags.map((tag) => (
+                    {skills.map((skill) => (
                         <Button
-                            key={tag.id}
-                            variant={selectedTag === tag.slug ? "default" : "ghost"}
-                            onClick={() => setSelectedTag(tag.slug)}
+                            key={skill.id}
+                            variant={selectedSkill === skill.slug ? "default" : "ghost"}
+                            onClick={() => setSelectedSkill(skill.slug)}
                             size="sm"
                         >
-                            <SpecialIcon name={tag.name} className="size-6" />
-                            {tag.name}
+                            <SpecialIcon name={skill.name} className="size-6" />
+                            {skill.name}
                         </Button>
                     ))}
                 </div>

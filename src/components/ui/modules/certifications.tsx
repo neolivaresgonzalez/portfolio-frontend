@@ -4,15 +4,6 @@ import { CertificationItem } from "@/components/ui/modules/certification-item"
 
 const CERTIFICATIONS: Certification[] = [
     {
-        title: "Microsoft Certified: Azure AI Fundamentals",
-        description: "Earners of the Azure AI Fundamentals certification have demonstrated foundational knowledge of machine learning (ML) and artificial intelligence (AI) concepts and related Microsoft Azure services.",
-        issuer: "Microsoft",
-        issuedOn: "July 15, 2024",
-        image: "https://images.credly.com/size/680x680/images/4136ced8-75d5-4afb-8677-40b6236e2672/azure-ai-fundamentals-600x600.png",
-        url: "https://www.credly.com/badges/870cefb2-4374-4bcf-9807-8594e4a0dd6a",
-        skills: ["Azure Bot Services", "Azure Machine Learning", "Cognitive Services"],
-    },
-    {
         title: "Curso de Python para el Manejo de Datos: Nivel Intermedio",
         description: "Este programa consistió en extraer y limpiar granes volúmenes de datos, para esto, se entregan técnicas y herramientas avanzadas de procesamiento de datos mediante el uso de funciones de la “Librería Pandas”.  Estas técnicas permiten obtener información muy valiosa y resolver problemas a partir de grandes volúmenes de datos.  Al término del programa, el estudiante está en condiciones de aplicar estas herramientas avanzadas de manejo de datos en su ámbito laboral, para facilitar la ejecución de sus tareas, abrir nuevas posibilidades de análisis y ser capaces de resolver problemas.",
         issuer: "Pontifical Catholic University of Chile",
@@ -30,6 +21,15 @@ const CERTIFICATIONS: Certification[] = [
         url: "https://www.credential.net/68696a4e-e715-470a-8970-367683b2ffb4#acc.iDCbtQyH",
         skills: ["Programación en Python", "Procesamiento de datos", "Conceptos básicos de programación y control de Flujo"],
     },
+    {
+        title: "Microsoft Certified: Azure AI Fundamentals",
+        description: "Earners of the Azure AI Fundamentals certification have demonstrated foundational knowledge of machine learning (ML) and artificial intelligence (AI) concepts and related Microsoft Azure services.",
+        issuer: "Microsoft",
+        issuedOn: "July 15, 2024",
+        image: "https://images.credly.com/size/680x680/images/4136ced8-75d5-4afb-8677-40b6236e2672/azure-ai-fundamentals-600x600.png",
+        url: "https://www.credly.com/badges/870cefb2-4374-4bcf-9807-8594e4a0dd6a",
+        skills: ["Azure Bot Services", "Azure Machine Learning", "Cognitive Services"],
+    }
 ]
 
 export function Certifications() {

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/shadcn-ui/button"
 
 export function CertificationItem(props: Certification) {
     return (
-        <Card className="snap-center w-full max-w-md shrink-0 justify-center">
+        <Card className="snap-center w-full max-w-md shrink-0 justify-between">
             <CardHeader>
                 <div className="flex justify-center">
                     <img

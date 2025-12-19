@@ -110,9 +110,7 @@ export function ProjectDetailPage() {
                             <h2 className="text-2xl font-semibold">Highlights</h2>
                             <div className="prose dark:prose-invert">
                                 <ReactMarkdown>
-                                    - Definición de arquitectura de contenidos y schemas de Strapi para el MVP
-                                    - Plan de integración con monday.com CRM para captura y ciclo de vida de leads
-                                    - Alineamiento del flujo entre contenido, CRM y operación
+                                    {project.highlights}
                                 </ReactMarkdown>
                             </div>
                         </div>
@@ -124,7 +122,7 @@ export function ProjectDetailPage() {
                         <h3 className="font-semibold text-lg">Project Links</h3>
                         <div className="flex flex-col gap-3">
                             <Button variant="outline" className="w-full justify-start gap-2">
-                                <Github size={16} /> View Code
+                                <SpecialIcon name="github" className="size-6" /> View Code
                             </Button>
                             <Button variant="default" className="w-full justify-start gap-2">
                                 <ExternalLink size={16} /> Live Demo
