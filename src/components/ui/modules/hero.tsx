@@ -51,9 +51,9 @@ export function Hero({ title, subtitle, image }: HeroProps) {
                     <div className="flex flex-col items-center justify-center size-16 md:size-28">
                         <SpecialIcon name="logo" className="p-2" />
                     </div>
-                    <p className="text-xl text-center">{subtitle || "Welcome to my portfolio"}</p>
+                    <p className="text-xl text-center">{"Welcome to my portfolio"}</p>
                     <p className="text-3xl font-bold text-center">{title || "Nicolás Olivares"}</p>
-                    <p className="text-3lg font-semibold text-center">Software Engineer | Technical Leader | Project Manager</p>
+                    <p className="text-3lg font-semibold text-center">{subtitle || "Software Engineer | Technical Leader | Project Manager"}</p>
                 </div>
                 <div id="hero-section-main-info-buttons" className="flex w-full flex-col sm:flex-row items-center justify-center gap-4">
                     <DownloadResumeModule side="left" />
