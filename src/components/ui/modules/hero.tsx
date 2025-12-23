@@ -4,7 +4,34 @@ import { ContactChannel } from "@/components/ui/modules/contact-channel"
 import { DownloadResumeModule } from "@/components/ui/modules/download-resume"
 import { SpecialIcon } from "@/lib/icons"
 import { HashLink } from "react-router-hash-link"
-import { CONTACT_CHANNELS } from "@/components/ui/sections/contact-section"
+import type { ContactChannelProps } from "@/types/contact-channel-card"
+
+const CONTACT_CHANNELS: ContactChannelProps[] = [
+    {
+        kind: "linkedin",
+        value: "linkedin.com/in/ne-olivaresgonzalez",
+        url: "https://linkedin.com/in/ne-olivaresgonzalez",
+        text: false
+    },
+    {
+        kind: "github",
+        value: "github.com/neolivaresgonzalez",
+        url: "https://github.com/neolivaresgonzalez",
+        text: false
+    },
+    {
+        kind: "email",
+        value: "nicolasolivares@gmail.com",
+        url: "mailto:nicolasolivares@gmail.com",
+        text: false,
+    },
+    {
+        kind: "phone",
+        value: "+1 (647) 303-6908",
+        url: "https://wa.link/r0hlgk",
+        text: false
+    },
+]
 
 interface HeroProps {
     title?: string;
