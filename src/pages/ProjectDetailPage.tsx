@@ -5,7 +5,7 @@ import type { Project } from "@/components/ui/modules/project-item"
 import { Badge } from '@/components/ui/shadcn-ui/badge'
 import ReactMarkdown from 'react-markdown'
 import { Button } from "@/components/ui/shadcn-ui/button"
-import { ExternalLink, Github, ChevronLeft } from "lucide-react"
+import { ExternalLink, ChevronLeft } from "lucide-react"
 import { SpecialIcon } from "@/lib/icons"
 
 export function ProjectDetailPage() {

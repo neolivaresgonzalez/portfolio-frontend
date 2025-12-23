@@ -10,7 +10,7 @@ export const SectionScrollDownIndicator = (props: SectionScrollDownIndicatorProp
 
     return (
         <div
-            onClick={() => window.scrollTo({ top: document.getElementById(props.nextSectionId)?.offsetTop || 0, behavior: "smooth" })}
+            onClick={() => window.scrollTo({ top: document.getElementById(props.nextSectionId ?? "")?.offsetTop || 0, behavior: "smooth" })}
             onMouseEnter={() => iconRef.current?.startAnimation()}
             onMouseLeave={() => iconRef.current?.stopAnimation()}
             className="flex flex-row w-full h-16 items-center cursor-pointer hover:opacity-80 transition-opacity"
