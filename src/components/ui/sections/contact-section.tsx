@@ -5,7 +5,7 @@ import { SectionTitle } from "../modules/section-title"
 import type { SectionProps } from "@/types/section-props"
 import { SectionScrollDownIndicator } from "../icons/section-scroll-down-indicator"
 
-const CONTACT_CHANNELS: ContactChannelProps[] = [
+export const CONTACT_CHANNELS: ContactChannelProps[] = [
     {
         kind: "email",
         value: "nolivares.work@gmail.com",
@@ -14,8 +14,8 @@ const CONTACT_CHANNELS: ContactChannelProps[] = [
     },
     {
         kind: "phone",
-        value: "+1 (123) 456-7890",
-        url: "tel:+11234567890",
+        value: "+1 (647) 303-6908",
+        url: "https://wa.link/r0hlgk",
         text: true
     },
     {

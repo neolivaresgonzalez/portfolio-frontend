@@ -1,37 +1,10 @@
 import profilePicture from "@/assets/profile.jpeg"
 import { Button } from "@/components/ui/shadcn-ui/button"
-import type { ContactChannelProps } from "@/types/contact-channel-card"
 import { ContactChannel } from "@/components/ui/modules/contact-channel"
 import { DownloadResumeModule } from "@/components/ui/modules/download-resume"
 import { SpecialIcon } from "@/lib/icons"
 import { HashLink } from "react-router-hash-link"
-
-const CONTACT_CHANNELS: ContactChannelProps[] = [
-    {
-        kind: "linkedin",
-        value: "linkedin.com/in/ne-olivaresgonzalez",
-        url: "https://linkedin.com/in/ne-olivaresgonzalez",
-        text: false
-    },
-    {
-        kind: "github",
-        value: "github.com/neolivaresgonzalez",
-        url: "https://github.com/neolivaresgonzalez",
-        text: false
-    },
-    {
-        kind: "email",
-        value: "nicolasolivares@gmail.com",
-        url: "mailto:nicolasolivares@gmail.com",
-        text: false,
-    },
-    {
-        kind: "phone",
-        value: "+1 (123) 456-7890",
-        url: "tel:+11234567890",
-        text: false,
-    },
-]
+import { CONTACT_CHANNELS } from "@/components/ui/sections/contact-section"
 
 interface HeroProps {
     title?: string;
