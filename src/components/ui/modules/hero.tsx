@@ -6,6 +6,7 @@ import { SpecialIcon } from "@/lib/icons"
 import { HashLink } from "react-router-hash-link"
 import type { ContactChannelProps } from "@/types/contact-channel-card"
 
+
 const CONTACT_CHANNELS: ContactChannelProps[] = [
     {
         kind: "linkedin",
