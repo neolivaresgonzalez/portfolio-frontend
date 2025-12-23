@@ -122,7 +122,7 @@ export function ProjectDetailPage() {
                         <h3 className="font-semibold text-lg">Project Links</h3>
                         <div className="flex flex-col gap-3">
                             {project.links?.map((link) => {
-                                const isGithub = link.label.toLowerCase().includes('github') || link.url.toLowerCase().includes('github');
+                                const isRepo = link.kind === 'repo';
                                 return (
                                     <a
                                         key={link.url}
@@ -131,9 +131,9 @@ export function ProjectDetailPage() {
                                         rel="noopener noreferrer"
                                         className="w-full"
                                     >
-                                        <Button variant={isGithub ? "outline" : "default"} className="w-full justify-start gap-2">
-                                            {isGithub ? (
-                                                <SpecialIcon name="github" className="size-6" />
+                                        <Button variant={isRepo ? "outline" : "default"} className="w-full justify-start gap-2">
+                                            {isRepo ? (
+                                                <SpecialIcon name={link.label} className="size-6" />
                                             ) : (
                                                 <ExternalLink size={16} />
                                             )}
