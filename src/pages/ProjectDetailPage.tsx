@@ -121,12 +121,27 @@ export function ProjectDetailPage() {
                     <div className="p-6 border rounded-xl space-y-4">
                         <h3 className="font-semibold text-lg">Project Links</h3>
                         <div className="flex flex-col gap-3">
-                            <Button variant="outline" className="w-full justify-start gap-2">
-                                <SpecialIcon name="github" className="size-6" /> View Code
-                            </Button>
-                            <Button variant="default" className="w-full justify-start gap-2">
-                                <ExternalLink size={16} /> Live Demo
-                            </Button>
+                            {project.links?.map((link) => {
+                                const isRepo = link.kind === 'repo';
+                                return (
+                                    <a
+                                        key={link.url}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="w-full"
+                                    >
+                                        <Button variant={isRepo ? "outline" : "default"} className="w-full justify-start gap-2">
+                                            {isRepo ? (
+                                                <SpecialIcon name={link.label} className="size-6" />
+                                            ) : (
+                                                <ExternalLink size={16} />
+                                            )}
+                                            {link.label}
+                                        </Button>
+                                    </a>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

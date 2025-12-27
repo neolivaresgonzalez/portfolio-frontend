@@ -27,6 +27,7 @@ export interface Project {
     links?: {
         url: string;
         label: string;
+        kind?: 'demo' | 'repo' | 'case-study' | 'other';
     }[];
     isFeatured?: boolean;
     featuredSince?: string;
