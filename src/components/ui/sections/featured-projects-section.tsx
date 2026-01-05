@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
+
 import { fetchAPI } from "@/lib/strapi"
 import { ProjectItem } from "@/components/ui/modules/project-item"
 import type { Project } from "@/components/ui/modules/project-item"
@@ -8,14 +8,13 @@ import { SectionTitle } from "@/components/ui/modules/section-title";
 import type { SectionProps } from "@/types/section-props"
 
 export function FeaturedProjectsSection(props: SectionProps) {
-    const { t, i18n } = useTranslation();
     const [projects, setProjects] = useState<Project[]>([]);
 
     useEffect(() => {
         const loadFeatured = async () => {
             try {
                 const res = await fetchAPI('/projects', {
-                    locale: i18n.language,
+                    locale: 'en',
                     filters: {
                         isFeatured: {
                             $eq: true
@@ -35,12 +34,12 @@ export function FeaturedProjectsSection(props: SectionProps) {
             }
         };
         loadFeatured();
-    }, [i18n.language]);
+    }, []);
 
     return (
         <div id="featured-projects-section" className="flex flex-col min-h-0 py-8 lg:py-16 w-full max-w-[100vw]">
             <div id="featured-projects-section-title" className="flex justify-center w-full mb-8 px-4">
-                <SectionTitle title={t('featured_projects', 'Featured projects')} subtitle={t('browse_featured', 'Browse my featured projects')} />
+                <SectionTitle title="Featured projects" subtitle="Browse my featured projects" />
             </div>
             <div id="featured-projects-section-content-container" className="flex flex-1 flex-col gap-5 min-h-0">
                 <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 auto-rows-fr">

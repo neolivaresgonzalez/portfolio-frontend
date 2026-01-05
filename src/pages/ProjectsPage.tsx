@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useTranslation } from "react-i18next"
+
 import { fetchAPI } from "@/lib/strapi"
 import { ProjectItem } from "@/components/ui/modules/project-item"
 import type { Project } from "@/components/ui/modules/project-item"
@@ -9,7 +9,6 @@ import { SectionTitle } from "@/components/ui/modules/section-title"
 import { SpecialIcon } from "@/lib/icons"
 
 export function ProjectsPage() {
-    const { t, i18n } = useTranslation();
     const [projects, setProjects] = useState<Project[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
@@ -48,7 +47,7 @@ export function ProjectsPage() {
                 }
 
                 const projectsRes = await fetchAPI('/projects', {
-                    locale: i18n.language,
+                    locale: 'en',
                     populate: ['coverImage', 'Stack', 'links'],
                     filters: filters,
                     sort: ['order:asc', 'featuredSince:desc']
@@ -69,12 +68,12 @@ export function ProjectsPage() {
         }, 300); // Debounce search
 
         return () => clearTimeout(timeoutId);
-    }, [searchQuery, selectedSkill, i18n.language]);
+    }, [searchQuery, selectedSkill]);
 
     return (
         <div className="container mx-auto py-8 px-4 min-h-[calc(100vh-4rem)] flex flex-col gap-8">
             <SectionTitle
-                title={t('projects')}
+                title="Projects"
                 subtitle="Explore my latest work, open source contributions, and experiments."
             />
 
