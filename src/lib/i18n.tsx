@@ -23,7 +23,7 @@ i18n
     detection: {
       order: ['querystring', 'navigator'],
       lookupQuerystring: 'lng',
-      convertDetectedLanguage: (lng) => {
+      convertDetectedLanguage: (/*lng*/) => {
         // if (lng.startsWith('es')) return 'es-419';
         // if (lng.startsWith('fr')) return 'fr-CA';
         return 'en';
