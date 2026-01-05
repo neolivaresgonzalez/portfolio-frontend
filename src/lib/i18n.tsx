@@ -13,7 +13,7 @@ i18n
   .init({
     debug: true,
     fallbackLng: 'en', // Default locale in Strapi is 'en'
-    supportedLngs: ['en', 'es-419', 'fr-CA'], // Match Strapi locales exactly
+    supportedLngs: ['en'], // Match Strapi locales exactly ['es-419', 'fr-CA']
     load: 'currentOnly',
 
     interpolation: {
@@ -24,8 +24,8 @@ i18n
       order: ['querystring', 'navigator'],
       lookupQuerystring: 'lng',
       convertDetectedLanguage: (lng) => {
-        if (lng.startsWith('es')) return 'es-419';
-        if (lng.startsWith('fr')) return 'fr-CA';
+        // if (lng.startsWith('es')) return 'es-419';
+        // if (lng.startsWith('fr')) return 'fr-CA';
         return 'en';
       }
     },
@@ -35,26 +35,6 @@ i18n
           "projects": "Projects",
           "featured_projects": "Featured Projects",
           "browse_featured": "Browse my",
-          "header": {
-            "title": "Nicolás Olivares"
-          }
-        }
-      },
-      "es-419": {
-        translation: {
-          "projects": "Proyectos",
-          "featured_projects": "Proyectos Destacados",
-          "browse_featured": "Explora mis",
-          "header": {
-            "title": "Nicolás Olivares"
-          }
-        }
-      },
-      "fr-CA": {
-        translation: {
-          "projects": "Projets",
-          "featured_projects": "Projets en vedette",
-          "browse_featured": "Parcourez mes",
           "header": {
             "title": "Nicolás Olivares"
           }
