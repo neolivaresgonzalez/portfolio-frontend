@@ -100,7 +100,7 @@ export function ProjectDetailPage() {
 
                     <div className="space-y-4">
                         <h2 className="text-2xl font-semibold">About</h2>
-                        <p className="whitespace-pre-wrap leading-relaxed text-muted-foreground">
+                        <p className="text-justify whitespace-pre-wrap leading-relaxed text-muted-foreground">
                             {project.shortSummary}
                         </p>
                     </div>
@@ -108,7 +108,7 @@ export function ProjectDetailPage() {
                     {project.highlights && (
                         <div className="space-y-4">
                             <h2 className="text-2xl font-semibold">Highlights</h2>
-                            <div className="prose dark:prose-invert">
+                            <div className="prose dark:prose-invert text-justify">
                                 <ReactMarkdown>
                                     {project.highlights}
                                 </ReactMarkdown>
