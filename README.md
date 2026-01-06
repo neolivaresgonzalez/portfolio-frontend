@@ -1,80 +1,57 @@
-# React + TypeScript + Vite + TailwindCSS + shadcn/ui + Animated UI Icons
+# Portfolio Frontend
 
-https://lucide-animated.com/?utm_source=ui.shadcn.com&utm_medium=referral&utm_campaign=directory&q=gith
-https://react.dev/learn/thinking-in-react
-https://tailwindcss.com/docs/styling-with-utility-classes
-https://ui.shadcn.com/docs/components
 
-Created a Figma Design for the portfolio docs/Portfolio.fig
+This project is a modern portfolio frontend built with **React**, **TypeScript**, and **Vite**, styled with **TailwindCSS** and **shadcn/ui**. It features animated icons and a responsive design.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
 
-Currently, two official plugins are available:
+-   **Node.js**: v20 or higher
+-   **npm**: v10 or higher
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Environment Setup
 
-## React Compiler
+To run this project, you need to configure the environment variables. Create a `.env` file in the root directory (or copy `sample.env` to `.env`) and add the following variables:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Variable | Description |
+| :--- | :--- |
+| `VITE_STRAPI_URL` | The URL of your Strapi CMS instance (e.g., `http://localhost:1337`). |
+| `VITE_STRAPI_API_TOKEN` | API Token generated in Strapi (Settings -> API Tokens) with permissions to access content types. |
+| `VITE_RECAPTCHA_SITE_KEY` | Your Google ReCaptcha v3 Site Key. |
+| `VITE_RECAPTCHA_BACKEND_URL` | The URL of your backend service that verifies the ReCaptcha token. |
+| `VITE_LOG_BUCKET_NAME` | (Optional) The name of the S3 bucket used for logging frontend events. |
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Install the project dependencies using npm:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Running Locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To start the development server with hot module replacement:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+## Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## Linting
+
+To check for code quality issues:
+
+```bash
+npm run lint
 ```
