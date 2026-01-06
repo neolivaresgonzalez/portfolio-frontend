@@ -36,7 +36,7 @@ jobs:
           # Form & ReCaptcha
           VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
           VITE_FORM_API_URL: ${{ secrets.VITE_FORM_API_URL }}
-          VITE_LOG_BUCKET_NAME: ${{ secrets.VITE_LOG_BUCKET_NAME }}
+
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4

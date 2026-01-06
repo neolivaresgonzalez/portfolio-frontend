@@ -18,7 +18,7 @@ To run this project, you need to configure the environment variables. Create a `
 | `VITE_STRAPI_API_TOKEN` | API Token generated in Strapi (Settings -> API Tokens) with permissions to access content types. |
 | `VITE_RECAPTCHA_SITE_KEY` | Your Google ReCaptcha v3 Site Key. |
 | `VITE_RECAPTCHA_BACKEND_URL` | The URL of your backend service that verifies the ReCaptcha token. |
-| `VITE_LOG_BUCKET_NAME` | (Optional) The name of the S3 bucket used for logging frontend events. |
+
 
 ## Installation
 
