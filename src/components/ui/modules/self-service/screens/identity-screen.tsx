@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/shadcn-ui/button"
 import { Input } from "@/components/ui/shadcn-ui/input"
 import { Label } from "@/components/ui/shadcn-ui/label"
-import { User, CheckCircle2, ShieldCheck, ScanLine, Smartphone } from "lucide-react"
+import { CheckCircle2, ShieldCheck, ScanLine } from "lucide-react"
 
 interface IdentityScreenProps {
     status: 'IDENTITY_PENDING' | 'OTP_PENDING' | 'IDENTITY_VERIFIED';
