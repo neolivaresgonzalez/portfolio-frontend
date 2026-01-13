@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/shadcn-ui/button"
-import { Lock, Delete, Shield } from "lucide-react"
+import { Lock, Shield } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 
