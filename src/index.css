@@ -151,6 +151,33 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes scan-y {
+  0% {
+    top: 0%;
+    opacity: 0.5;
+  }
+
+  50% {
+    top: 95%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 0%;
+    opacity: 0.5;
+  }
+}
+
+.animate-scan-y {
+  animation: scan-y 3s ease-in-out infinite;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
