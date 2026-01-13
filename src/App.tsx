@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/shadcn-ui/toaster"
 import { HomePage } from '@/pages/HomePage'
 import { ProjectsPage } from '@/pages/ProjectsPage'
 import { ProjectDetailPage } from '@/pages/ProjectDetailPage'
+import { SelfServicePage } from '@/pages/SelfServicePage'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+          <Route path="/self-service" element={<SelfServicePage />} />
         </Routes>
         <Toaster position='bottom-left' style={{
           backgroundColor: "#000000",
