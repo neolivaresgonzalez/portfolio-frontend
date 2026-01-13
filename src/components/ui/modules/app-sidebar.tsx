@@ -6,6 +6,7 @@ import { AtSignIcon } from "@/components/ui/icons/at-sign"
 import { BlocksIcon } from "@/components/ui/icons/blocks"
 import { SearchIcon } from "@/components/ui/icons/search"
 import { ClockIcon } from "@/components/ui/icons/clock"
+import { CreditCard } from "lucide-react"
 // import { CoffeeIcon } from "@/components/ui/icons/coffee"
 // import { RocketIcon } from "@/components/ui/icons/rocket"
 // import { HeartIcon } from "@/components/ui/icons/heart"
@@ -102,6 +103,14 @@ export const portfolioItems: MenuItem[] = [
     // }
 ]
 
+export const demoItems: MenuItem[] = [
+    {
+        title: "Self Service Kiosk",
+        url: "/self-service",
+        icon: CreditCard,
+    },
+]
+
 export function AppSidebar() {
     const { setOpenMobile, isMobile } = useSidebar();
 
@@ -139,6 +148,27 @@ export function AppSidebar() {
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     {portfolioItems.map((item) => (
+                                        <SidebarMenuItem key={item.title}>
+                                            <SidebarMenuButton asChild>
+                                                <HashLink smooth to={item.url} onClick={handleLinkClick}>
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                </HashLink>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    ))}
+                                </SidebarMenu>
+                            </SidebarGroupContent>
+                        </SidebarGroup>
+                    )
+                }
+                {
+                    demoItems.length > 0 && (
+                        <SidebarGroup>
+                            <SidebarGroupLabel>Demos</SidebarGroupLabel>
+                            <SidebarGroupContent>
+                                <SidebarMenu>
+                                    {demoItems.map((item) => (
                                         <SidebarMenuItem key={item.title}>
                                             <SidebarMenuButton asChild>
                                                 <HashLink smooth to={item.url} onClick={handleLinkClick}>
