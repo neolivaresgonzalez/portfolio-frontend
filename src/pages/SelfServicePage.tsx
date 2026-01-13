@@ -1,4 +1,5 @@
 import { SectionTitle } from "@/components/ui/modules/section-title"
+import { FooterNavbar } from "@/components/ui/modules/footer-navbar"
 import { Button } from "@/components/ui/shadcn-ui/button"
 import { Input } from "@/components/ui/shadcn-ui/input"
 import { Label } from "@/components/ui/shadcn-ui/label"
@@ -72,7 +73,7 @@ export function SelfServicePage() {
         <div id="self-service-section" className="container mx-auto py-8 px-4 min-h-[calc(100vh-4rem)] flex flex-col gap-8">
             <SectionTitle title="Self service demo" subtitle="Feel fee to explore the" />
 
-            <div id="self-service-content-container" className="flex flex-col lg:flex-row gap-8 items-start justify-center">
+            <div id="self-service-content-container" className="flex flex-col lg:flex-row gap-8 items-start justify-center flex-1">
                 {/* LEFT COLUMN: CONTROLS */}
                 <div id="self-service-menu" className="flex flex-col gap-8 w-full lg:w-1/4 min-w-[300px]">
 
@@ -189,12 +190,10 @@ export function SelfServicePage() {
                             })}
                         </div>
                     </div>
-
-
-
-
                 </div>
             </div>
+
+            <FooterNavbar scrollDownIndicator={false} nextSectionId="" />
         </div>
     )
 }
